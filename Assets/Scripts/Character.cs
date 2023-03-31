@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public enum type
+    {
+        bueno,malo
+    }
+    private type tipo;
     private int level;
-    private string characterType;
 
-    public Character(int level, string characterType)
+    public Character(int level, type characterType)
     {
         this.level = level;
-        this.characterType = characterType;
+        this.tipo= characterType;
     }
 
     public int Level { get => level; set => level = value; }
-    public string CharacterType { get => characterType; set => characterType = value; }
+    private type Tipo { get => tipo; set => tipo = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +31,11 @@ public class Character : MonoBehaviour
     {
         
     }
-    public void Die()
+    public void Die(int Character1,int character2)
     {
-        Destroy(gameObject);
+        if(character2>Character1)
+        {
+            
+        }
     }
 }
