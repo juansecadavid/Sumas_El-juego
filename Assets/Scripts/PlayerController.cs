@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : Character
 {
-    public PlayerController(int level, string characterType) : base(level, characterType)
+    public PlayerController(int level, Character.type characterType) : base(level, characterType)
     {
     }
 
