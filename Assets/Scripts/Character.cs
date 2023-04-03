@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
     {
         if(character2>Character1)
         {
-            
+            Destroy(Character1);
         }
     }
 }

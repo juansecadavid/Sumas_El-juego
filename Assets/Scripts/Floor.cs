@@ -27,6 +27,6 @@ public class Floor : MonoBehaviour
 
     public void RemoveFloor()
     {
-
+        Destroy(gameObject);
     }
 }
