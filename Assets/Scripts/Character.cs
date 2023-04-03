@@ -33,9 +33,6 @@ public class Character : MonoBehaviour
     }
     public void Die(int Character1,int character2)
     {
-        if(character2>Character1)
-        {
-            Destroy(Character1);
-        }
+      
     }
 }
