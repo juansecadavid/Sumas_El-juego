@@ -12,21 +12,19 @@ public class Floor : MonoBehaviour
     }
 
     internal List<Character> CharactersList { get => charactersList; set => charactersList = value; }
-
-    // Start is called before the first frame update
-    void Start()
+    public void RemoveCharacter(Character character)
     {
-        
+        for (int i = 0; i < charactersList.Count; i++)
+        {
+            if (charactersList[i] == character)
+            {
+                charactersList.RemoveAt(i);
+                break;
+            }
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void AddCharacter(Character character)
     {
-        
-    }
-
-    public void RemoveFloor()
-    {
-        Destroy(gameObject);
+        charactersList.Add(character);
     }
 }

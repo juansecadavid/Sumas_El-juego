@@ -5,30 +5,31 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     private List<Floor> floorList;
-    private bool isFromEnemy;
-
-    public Tower(List<Floor> floorList, bool isFromEnemy)
+    //private bool isFromEnemy;
+    private Character.type type;
+    public Tower(List<Floor> floorList, Character.type type)
     {
         this.floorList = floorList;
-        this.isFromEnemy = isFromEnemy;
+        this.Type = type;
     }
 
-    public bool IsFromEnemy { get => isFromEnemy; set => isFromEnemy = value; }
+    //public bool IsFromEnemy { get => isFromEnemy; set => isFromEnemy = value; }
     internal List<Floor> FloorList { get => floorList; set => floorList = value; }
+    internal Character.type Type { get => type; set => type = value; }
 
-    // Start is called before the first frame update
-    void Start()
+    public void RemoveFloor(Floor floor)
     {
-        
+        for (int i = 0; i < floorList.Count; i++)
+        {
+            if (floorList[i] == floor)
+            {
+                floorList.RemoveAt(i);
+                break;
+            }
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void AddFloor(Floor floor)
     {
-        
-    }
-    private void DestroyTower()
-    {
-        Destroy(gameObject);
+        floorList.Add(floor);
     }
 }
