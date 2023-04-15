@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-
     public static bool gameP;
     public static bool boolseguroP;
 
@@ -53,7 +53,8 @@ public class PauseMenu : MonoBehaviour
 
     public void mPrincipal()
     {
-        SceneManager.LoadScene("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("StartMenu");
         Time.timeScale = 1;
         //mordida.Play();
     }
@@ -70,10 +71,11 @@ public class PauseMenu : MonoBehaviour
         //mordida.Play();
     }
 
-    public void salirPsi()
+    public void Exit()
     {
         Debug.Log("Se ha salido del juego");
         Application.Quit();
         //mordida.Play();
     }
+
 }

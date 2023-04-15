@@ -9,4 +9,21 @@ public class menuPrincipal : MonoBehaviour
     {
         SceneManager.LoadScene("Level1");
     }
+
+    public void Exit()
+    {
+        Debug.Log("Se ha salido del juego");
+        Application.Quit();
+        //mordida.Play();
+    }
+    public void Menu()
+    {
+        //SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 }
