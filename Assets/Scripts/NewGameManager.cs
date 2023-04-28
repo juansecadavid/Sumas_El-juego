@@ -1,19 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class NewGameManager : MonoBehaviour
 {
     public static int enemyCounter = 0;
 
-    public static Tower TowerCharacterGenerator()
+    [SerializeField]
+    GameObject towerTry;
+
+    [SerializeField]
+    GameObject floorTry;
+
+
+    public void Start()
+    {
+        TowerCharacterGenerator();
+        TowerGenerator(3, 2);
+    }
+
+    public void TowerCharacterGenerator()
     {
         List<Floor> floorList = FloorGeneratorForMain(2, Character.type.main);
-        Tower tower = new Tower(floorList, Character.type.main);
+        //Tower tower = new Tower(floorList, Character.type.main);
 
-        return tower;
+        //Tower tower = towerTry.AddComponent<Tower>();
+
+        Instantiate(towerTry, new Vector3(-34, -1.5f, 0), Quaternion.identity);
+
+        //return tower;
     }
-    public static Tower TowerGenerator(int numberFloor, int numberCharacter)
+    public void TowerGenerator(int numberFloor, int numberCharacter)
     {
         int numberFloors = numberFloor;
         int numberCharcters = numberCharacter;
@@ -21,12 +39,16 @@ public class GameManager : MonoBehaviour
         List<Floor> floorList;
         floorList = FloorGenerator(numberFloors, numberCharcters, Character.type.evil);
 
-        Tower tower = new Tower(floorList, Character.type.evil);
-        return tower;
+        //Tower tower = new Tower(floorList, Character.type.evil);
+
+        Instantiate(towerTry, new Vector3(-3, -1.5f, 0), Quaternion.identity);
+        //return tower;
     }
-    public static List<Floor> FloorGenerator(int numberFloors, int numberCharacters, Character.type type)
+    public List<Floor> FloorGenerator(int numberFloors, int numberCharacters, Character.type type)
     {
         List<Floor> floorList = new List<Floor>();
+
+        float count = -13;
 
         for (int i = 0; i < numberFloors; i++)
         {
@@ -36,18 +58,24 @@ public class GameManager : MonoBehaviour
             {
                 Character character = EnemyGenerator(type);
                 list.Add(character);
+
+                
             }
             enemyCounter++;
-            Floor floor = new Floor(list);
-            floorList.Add(floor);
+            //Floor floor = new Floor(list);
+            //floorList.Add(floor);
+
+            Instantiate(floorTry, new Vector3(-3, count, 0), Quaternion.identity);
+            count += 10f;
         }
         return floorList;
     }
 
-    public static List<Floor> FloorGeneratorForMain(int numberFloors, Character.type type)
+    public List<Floor> FloorGeneratorForMain(int numberFloors, Character.type type)
     {
         List<Floor> floorList = new List<Floor>();
         int rand = Random.Range(0, 2);
+        float count = -13;
 
         for (int i = 0; i < numberFloors; i++)
         {
@@ -59,8 +87,17 @@ public class GameManager : MonoBehaviour
                 list.Add(character);
             }
 
-            Floor floor = new Floor(list);
-            floorList.Add(floor);
+            //Floor floor = new Floor(list);           
+
+            //Floor floor = floorTry.AddComponent<Floor>();
+
+            Instantiate(floorTry, new Vector3(-34, count, 0), Quaternion.identity);
+
+            //aquí se debería crear un piso
+
+            //floorList.Add(floor);
+
+            count += 10f;
         }
         return floorList;
     }
