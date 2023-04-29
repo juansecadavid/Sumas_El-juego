@@ -27,11 +27,4 @@ public class Floor : MonoBehaviour
     {
         charactersList.Add(character);
     }
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"));
-        {
-            charactersList.Add(collision.GetComponent<Character>());
-        }
-    }*/
 }

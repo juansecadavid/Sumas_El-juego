@@ -30,7 +30,7 @@ public class NewGameManager : MonoBehaviour
     {
         //Instantiate(playerTry, new Vector3(-17, -13f, 0), Quaternion.identity);
         EnemyTower = towerTry.GetComponent<Tower>();
-        EnemyFloor=floorTry.GetComponent<Floor>();
+        //EnemyFloor=floorTry.GetComponent<Floor>();
         TowerCharacterGenerator();
         TowerGenerator(3, 3);
         
