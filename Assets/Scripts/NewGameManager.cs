@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
+
 
 public class NewGameManager : MonoBehaviour
 {
@@ -12,7 +14,6 @@ public class NewGameManager : MonoBehaviour
 
     [SerializeField]
     GameObject floorTry;
-
 
     public void Start()
     {
@@ -74,7 +75,7 @@ public class NewGameManager : MonoBehaviour
     public List<Floor> FloorGeneratorForMain(int numberFloors, Character.type type)
     {
         List<Floor> floorList = new List<Floor>();
-        int rand = Random.Range(0, 2);
+        int rand = UnityEngine.Random.Range(0, 2);
         float count = -13;
 
         for (int i = 0; i < numberFloors; i++)
@@ -114,12 +115,13 @@ public class NewGameManager : MonoBehaviour
 
         return character;
     }
+
     public static void MoveAndFight(Character player, Floor actualFloor, Floor floorToMove, Tower originTower)
     {
 
         if (floorToMove.CharactersList.Count > 0)
         {
-
+            Console.WriteLine("El combate inicio");
             actualFloor.RemoveCharacter(player);
             floorToMove.AddCharacter(player);
 
@@ -151,7 +153,7 @@ public class NewGameManager : MonoBehaviour
                 floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
                 floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
             }
-
+            
         }
 
     }
