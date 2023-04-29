@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898694640097375923, guid: ddea49386a7e2b146acd63a618448f02, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddea49386a7e2b146acd63a618448f02, type: 3}
@@ -289,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5151745609394414892, guid: dfbb05e68ea0c0848b3dafd31589bb45, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5151745609394414892, guid: dfbb05e68ea0c0848b3dafd31589bb45, type: 3}
       propertyPath: m_TagString
@@ -372,7 +372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerTry: {fileID: 1358566055}
   floorTry: {fileID: 1358566055}
-  floorFights: []
 --- !u!1 &1103481469
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5503142226856198700, guid: 05ebeb66ef013c24b9b60697ba37a34c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5503142226856198688, guid: 05ebeb66ef013c24b9b60697ba37a34c, type: 3}
