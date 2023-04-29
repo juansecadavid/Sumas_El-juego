@@ -8,6 +8,7 @@ public class MoveSystem : MonoBehaviour
     //public GameObject floorFight;
     //public GameObject[] floorFights;
     public List<GameObject> floorFights = new List<GameObject>();
+   
     private bool moving;
 
     private float startPosX;
@@ -21,10 +22,7 @@ public class MoveSystem : MonoBehaviour
     void Start()
     {
         resetPosition = this.transform.localPosition;
-        foreach (GameObject floor in GameObject.FindGameObjectsWithTag("FloorFight"))
-        {
-            floorFights.Add(floor);
-        }
+        AddFloors(); // Llama a la función AddFloors()
     }
 
     // Update is called once per frame
@@ -45,7 +43,7 @@ public class MoveSystem : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("mouse down");
+        
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos;
@@ -57,11 +55,10 @@ public class MoveSystem : MonoBehaviour
 
             moving = true;
         }
-       
     }
     public void OnMouseUp()
     {
-        Debug.Log("mouse up");
+        
         moving = false;
          bool foundFloorFight = false;
 
@@ -79,23 +76,28 @@ public class MoveSystem : MonoBehaviour
          {
              this.transform.localPosition = new Vector3(resetPosition.x, resetPosition.y, resetPosition.z);
          }
-      
+        
     }
 
     private void AddFloors() //función para agregar los pisos automáticamente
     {
-        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower"); //se buscan las torres en la escena
-        foreach (GameObject tower in towers)
+        /*GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower"); //se buscan las torres en la escena
+         foreach (GameObject tower in towers)
+         {
+             foreach (Transform child in tower.transform) //se busca en los hijos de la torre los objetos con el tag "Floor"
+             {
+                 if (child.gameObject.CompareTag("Floor"))
+                 {
+                     floorFights.Add(child.gameObject); //se agregan los objetos a la lista de pisos
+                 }
+             }
+         }
+         Debug.Log("AddFloors: " + floorFights.Count);*/
+        GameObject[] floorFightObjects = GameObject.FindGameObjectsWithTag("FloorFight");
+        foreach (GameObject floorFight in floorFightObjects)
         {
-            foreach (Transform child in tower.transform) //se busca en los hijos de la torre los objetos con el tag "Floor"
-            {
-                if (child.gameObject.CompareTag("Floor"))
-                {
-                    floorFights.Add(child.gameObject); //se agregan los objetos a la lista de pisos
-                }
-            }
+            floorFights.Add(floorFight);
         }
-        Debug.Log("AddFloors");
+        Debug.Log("Floor added: " + floorFights.Count);
     }
-
 }

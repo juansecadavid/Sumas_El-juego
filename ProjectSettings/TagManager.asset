@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DragParent
   - Character
+  - Tower
   - FloorFight
   layers:
   - Default
@@ -44,7 +45,10 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Floor
+  - name: Tower
+    uniqueID: 1367532687
+    locked: 0
+  - name: FloorFight
     uniqueID: 2840149901
     locked: 0
   - name: Character

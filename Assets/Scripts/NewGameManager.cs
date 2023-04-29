@@ -20,6 +20,7 @@ public class NewGameManager : MonoBehaviour
     GameObject enemyTry;
     float count = -13;
     float countCharacterX = -2;
+
     public void Start()
     {
         TowerCharacterGenerator();
@@ -126,7 +127,7 @@ public class NewGameManager : MonoBehaviour
 
     public static void MoveAndFight(Character player, Floor actualFloor, Floor floorToMove, Tower originTower)
     {
-        /*if (floorToMove.CharactersList.Count > 0)
+        if (floorToMove.CharactersList.Count > 0)
         {
             Console.WriteLine("El combate inicio");
             actualFloor.RemoveCharacter(player);
@@ -161,8 +162,8 @@ public class NewGameManager : MonoBehaviour
                 floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
             }
 
-        }*/
-
+        }
+        /*
         bool isMouseDown = false;
         bool isMouseUp = false;
         MoveSystem moveSystem = new MoveSystem();
@@ -207,6 +208,6 @@ public class NewGameManager : MonoBehaviour
                     floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
                 }
             }
-        }
+        }*/
     }
 }
