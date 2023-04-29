@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerTry: {fileID: 7898694640097375923, guid: ddea49386a7e2b146acd63a618448f02, type: 3}
   floorTry: {fileID: 5151745609394414892, guid: dfbb05e68ea0c0848b3dafd31589bb45, type: 3}
+  enemyTry: {fileID: 1708306939310627604, guid: 165774967126b274f877dba21eea8eff, type: 3}
 --- !u!4 &1246452312
 Transform:
   m_ObjectHideFlags: 0

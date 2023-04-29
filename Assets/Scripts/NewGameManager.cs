@@ -20,9 +20,13 @@ public class NewGameManager : MonoBehaviour
     GameObject enemyTry;
     float count = -13;
     float countCharacterX = -2;
+    Tower EnemyTower;
+    Floor EnemyFloor;
 
     public void Start()
     {
+        EnemyTower = towerTry.GetComponent<Tower>();
+        EnemyFloor=floorTry.GetComponent<Floor>();
         TowerCharacterGenerator();
         TowerGenerator(3, 3);
     }
@@ -34,7 +38,7 @@ public class NewGameManager : MonoBehaviour
 
         //Tower tower = towerTry.AddComponent<Tower>();
 
-        Instantiate(towerTry, new Vector3(-34, -1.5f, 0), Quaternion.identity);
+        Instantiate(towerTry, new Vector3(-20, -1.5f, 0), Quaternion.identity);
 
         //return tower;
     }
@@ -47,8 +51,9 @@ public class NewGameManager : MonoBehaviour
         floorList = FloorGenerator(numberFloors, numberCharcters, Character.type.evil);
 
         //Tower tower = new Tower(floorList, Character.type.evil);
+        EnemyTower.FloorList = floorList;
 
-        Instantiate(towerTry, new Vector3(-3, -1.5f, 0), Quaternion.identity);
+        Instantiate(towerTry, new Vector3(2, -1.5f, 0), Quaternion.identity);
         //return tower;
     }
     public List<Floor> FloorGenerator(int numberFloors, int numberCharacters, Character.type type)
@@ -60,7 +65,7 @@ public class NewGameManager : MonoBehaviour
         for (int i = 0; i < numberFloors; i++)
         {
             List<Character> list = new List<Character>();
-            countCharacterX = -5f;
+            countCharacterX = 0f;
 
             for (int j = 0; j < numberCharacters; j++)
             {
@@ -73,7 +78,7 @@ public class NewGameManager : MonoBehaviour
             //Floor floor = new Floor(list);
             //floorList.Add(floor);
 
-            Instantiate(floorTry, new Vector3(-3, count, 0), Quaternion.identity);
+            Instantiate(floorTry, new Vector3(2, count, 0), Quaternion.identity);
             count += 10f;
         }
         return floorList;
@@ -99,7 +104,7 @@ public class NewGameManager : MonoBehaviour
 
             //Floor floor = floorTry.AddComponent<Floor>();
 
-            Instantiate(floorTry, new Vector3(-34, count, 0), Quaternion.identity);
+            Instantiate(floorTry, new Vector3(-20, count, 0), Quaternion.identity);
 
             //aquí se debería crear un piso
 

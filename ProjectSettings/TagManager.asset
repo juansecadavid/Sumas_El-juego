@@ -8,6 +8,7 @@ TagManager:
   - Character
   - Tower
   - FloorFight
+  - Catch
   layers:
   - Default
   - TransparentFX

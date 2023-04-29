@@ -8,21 +8,25 @@ public class MoveSystem : MonoBehaviour
     //public GameObject floorFight;
     //public GameObject[] floorFights;
     public List<GameObject> floorFights = new List<GameObject>();
-   
+    public bool isOnFloor;
     private bool moving;
 
     private float startPosX;
     private float startPosY;
     private bool finish;
+    public GameObject maldito;
 
-    private Vector3 resetPosition;
+    public Transform resetPosition;
+    BoxCollider2D coll;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        resetPosition = this.transform.localPosition;
+        coll = GetComponent<BoxCollider2D>();
+        resetPosition = this.transform;
         AddFloors(); // Llama a la función AddFloors()
+        isOnFloor = false;
     }
 
     // Update is called once per frame
@@ -54,15 +58,17 @@ public class MoveSystem : MonoBehaviour
             startPosY = mousePos.y - this.transform.localPosition.y;
 
             moving = true;
+            coll.isTrigger = true;
         }
     }
     public void OnMouseUp()
     {
         
-        moving = false;
+         moving = false;
          bool foundFloorFight = false;
+        coll.isTrigger = false;
 
-         foreach (GameObject floorFight in floorFights)
+         /*foreach (GameObject floorFight in floorFights)
          {
              if (Math.Abs(this.transform.localPosition.x - floorFight.transform.localPosition.x) <= 0.5f && Math.Abs(this.transform.localPosition.y - floorFight.transform.localPosition.y) <= 0.5f)
              {
@@ -75,8 +81,14 @@ public class MoveSystem : MonoBehaviour
          if (!foundFloorFight)
          {
              this.transform.localPosition = new Vector3(resetPosition.x, resetPosition.y, resetPosition.z);
-         }
-        
+         }*/
+        if(isOnFloor)
+        {
+
+        }
+        else
+            this.transform.position = maldito.transform.position;
+
     }
 
     private void AddFloors() //función para agregar los pisos automáticamente
@@ -99,5 +111,32 @@ public class MoveSystem : MonoBehaviour
             floorFights.Add(floorFight);
         }
         Debug.Log("Floor added: " + floorFights.Count);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Catch"))
+        {
+            isOnFloor = true;
+        }
+        else
+            isOnFloor = false;
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Catch"))
+        {
+            isOnFloor = true;
+        }
+        else
+            isOnFloor = false;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Catch"))
+        {
+            isOnFloor = false;
+            Floor floor=collision.GetComponent<Floor>();
+            //floor.AddCharacter(gameObject);
+        }
     }
 }
