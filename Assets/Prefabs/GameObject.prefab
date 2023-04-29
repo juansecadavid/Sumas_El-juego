@@ -114,6 +114,10 @@ PrefabInstance:
       value: character
       objectReference: {fileID: 0}
     - target: {fileID: 8402003672316408783, guid: 05ebeb66ef013c24b9b60697ba37a34c, type: 3}
+      propertyPath: level
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402003672316408783, guid: 05ebeb66ef013c24b9b60697ba37a34c, type: 3}
       propertyPath: maldito
       value: 
       objectReference: {fileID: 9187624568270726712}

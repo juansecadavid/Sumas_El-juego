@@ -18,7 +18,8 @@ public class MoveSystem : MonoBehaviour
 
     public Transform resetPosition;
     BoxCollider2D coll;
-
+    public Floor actualFloor;
+    public int level;
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +85,7 @@ public class MoveSystem : MonoBehaviour
          }*/
         if(isOnFloor)
         {
-
+            Fight();
         }
         else
             this.transform.position = maldito.transform.position;
@@ -117,6 +118,8 @@ public class MoveSystem : MonoBehaviour
         if (collision.CompareTag("Catch"))
         {
             isOnFloor = true;
+            Floor floor = collision.GetComponentInParent<Floor>();
+            actualFloor = floor;
         }
         else
             isOnFloor = false;
@@ -135,8 +138,20 @@ public class MoveSystem : MonoBehaviour
         if (collision.CompareTag("Catch"))
         {
             isOnFloor = false;
-            Floor floor=collision.GetComponent<Floor>();
+            
             //floor.AddCharacter(gameObject);
+        }
+    }
+    void Fight()
+    {
+        int result = level - actualFloor.CharactersList[actualFloor.charactersList.Count - 1].Level;
+        if(result>0)
+        {
+            Debug.Log("Ganó");
+        }
+        else
+        {
+            Debug.Log("Perdió");
         }
     }
 }
