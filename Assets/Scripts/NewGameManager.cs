@@ -18,6 +18,9 @@ public class NewGameManager : MonoBehaviour
 
     [SerializeField]
     GameObject enemyTry;
+
+    [SerializeField]
+    GameObject playerTry;
     float count = -13;
     float countCharacterX = -2;
     Tower EnemyTower;
@@ -25,10 +28,12 @@ public class NewGameManager : MonoBehaviour
 
     public void Start()
     {
+        //Instantiate(playerTry, new Vector3(-17, -13f, 0), Quaternion.identity);
         EnemyTower = towerTry.GetComponent<Tower>();
         EnemyFloor=floorTry.GetComponent<Floor>();
         TowerCharacterGenerator();
         TowerGenerator(3, 3);
+        
     }
 
     public void TowerCharacterGenerator()

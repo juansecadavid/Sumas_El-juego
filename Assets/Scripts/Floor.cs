@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    private List<Character> charactersList;
+    public List<Character> charactersList;
 
     public Floor(List<Character> charactersList)
     {
@@ -27,8 +27,11 @@ public class Floor : MonoBehaviour
     {
         charactersList.Add(character);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy")) ;
-    }
+        if (collision.CompareTag("Enemy"));
+        {
+            charactersList.Add(collision.GetComponent<Character>());
+        }
+    }*/
 }
