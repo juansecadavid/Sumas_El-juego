@@ -144,14 +144,21 @@ public class MoveSystem : MonoBehaviour
     }
     void Fight()
     {
-        int result = level - actualFloor.CharactersList[actualFloor.charactersList.Count - 1].Level;
-        if(result>0)
+        if (actualFloor.charactersList.Count > 0)
         {
-            Debug.Log("Ganó");
+            int result = level - actualFloor.CharactersList[actualFloor.charactersList.Count - 1].Level;
+            if (result > 0)
+            {
+                actualFloor.CharactersList[actualFloor.charactersList.Count - 1].gameObject.SetActive(false);
+                actualFloor.RemoveCharacter(actualFloor.CharactersList[actualFloor.charactersList.Count - 1]);
+                Debug.Log("Ganó");
+            }
+            else
+            {
+                Debug.Log("Perdió");
+            }
         }
         else
-        {
-            Debug.Log("Perdió");
-        }
+            Debug.Log("Vacío");
     }
 }
