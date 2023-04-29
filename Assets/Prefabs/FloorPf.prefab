@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1586292505260406399}
   m_Layer: 0
   m_Name: FloorPf
-  m_TagString: Untagged
+  m_TagString: FloorFight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
