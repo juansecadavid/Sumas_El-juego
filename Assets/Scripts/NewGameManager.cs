@@ -15,10 +15,14 @@ public class NewGameManager : MonoBehaviour
     [SerializeField]
     GameObject floorTry;
 
+    [SerializeField]
+    GameObject enemyTry;
+    float count = -13;
+    float countCharacterX = -2;
     public void Start()
     {
         TowerCharacterGenerator();
-        TowerGenerator(3, 2);
+        TowerGenerator(3, 3);
     }
 
     public void TowerCharacterGenerator()
@@ -49,15 +53,16 @@ public class NewGameManager : MonoBehaviour
     {
         List<Floor> floorList = new List<Floor>();
 
-        float count = -13;
+        
 
         for (int i = 0; i < numberFloors; i++)
         {
             List<Character> list = new List<Character>();
-
+            countCharacterX = -5f;
+            
             for (int j = 0; j < numberCharacters; j++)
             {
-                Character character = EnemyGenerator(type);
+                Character character = EnemyGenerator(type,countCharacterX);
                 list.Add(character);
 
                 
@@ -102,15 +107,17 @@ public class NewGameManager : MonoBehaviour
         }
         return floorList;
     }
-    public static Character CharacterGenerator(Character.type type)
+    public Character CharacterGenerator(Character.type type)
     {
         Character character = new Character(7, type);
         return character;
     }
-    public static Character EnemyGenerator(Character.type type)
+    public  Character EnemyGenerator(Character.type type, float countCharacterX)
     {
 
         Character character = new Character((4 + enemyCounter * 2), type);
+        Instantiate(enemyTry, new Vector3(countCharacterX, count, 0), Quaternion.identity);
+        this.countCharacterX += 2f;
         //Character character = new Character((4), type);
 
         return character;
