@@ -43,8 +43,9 @@ public class MoveSystem : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
+        Debug.Log("mouse down");
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos;
@@ -56,11 +57,12 @@ public class MoveSystem : MonoBehaviour
 
             moving = true;
         }
+       
     }
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
-
-         moving = false;
+        Debug.Log("mouse up");
+        moving = false;
          bool foundFloorFight = false;
 
          foreach (GameObject floorFight in floorFights)
@@ -77,6 +79,7 @@ public class MoveSystem : MonoBehaviour
          {
              this.transform.localPosition = new Vector3(resetPosition.x, resetPosition.y, resetPosition.z);
          }
+      
     }
 
     private void AddFloors() //función para agregar los pisos automáticamente
@@ -92,5 +95,7 @@ public class MoveSystem : MonoBehaviour
                 }
             }
         }
+        Debug.Log("AddFloors");
     }
+
 }

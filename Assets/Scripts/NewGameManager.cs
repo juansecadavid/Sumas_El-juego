@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using static MoveSystem;
 
 
 public class NewGameManager : MonoBehaviour
@@ -53,19 +54,19 @@ public class NewGameManager : MonoBehaviour
     {
         List<Floor> floorList = new List<Floor>();
 
-        
+
 
         for (int i = 0; i < numberFloors; i++)
         {
             List<Character> list = new List<Character>();
             countCharacterX = -5f;
-            
+
             for (int j = 0; j < numberCharacters; j++)
             {
-                Character character = EnemyGenerator(type,countCharacterX);
+                Character character = EnemyGenerator(type, countCharacterX);
                 list.Add(character);
 
-                
+
             }
             enemyCounter++;
             //Floor floor = new Floor(list);
@@ -112,7 +113,7 @@ public class NewGameManager : MonoBehaviour
         Character character = new Character(7, type);
         return character;
     }
-    public  Character EnemyGenerator(Character.type type, float countCharacterX)
+    public Character EnemyGenerator(Character.type type, float countCharacterX)
     {
 
         Character character = new Character((4 + enemyCounter * 2), type);
@@ -125,8 +126,7 @@ public class NewGameManager : MonoBehaviour
 
     public static void MoveAndFight(Character player, Floor actualFloor, Floor floorToMove, Tower originTower)
     {
-
-        if (floorToMove.CharactersList.Count > 0)
+        /*if (floorToMove.CharactersList.Count > 0)
         {
             Console.WriteLine("El combate inicio");
             actualFloor.RemoveCharacter(player);
@@ -160,8 +160,53 @@ public class NewGameManager : MonoBehaviour
                 floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
                 floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
             }
-            
-        }
 
+        }*/
+
+        bool isMouseDown = false;
+        bool isMouseUp = false;
+        MoveSystem moveSystem = new MoveSystem();
+        moveSystem.OnMouseDown();
+        isMouseDown = true;
+        moveSystem.OnMouseUp();
+        isMouseUp = true;
+        Debug.Log("lee MoveSystem");
+
+        // Comprobar si se ha hecho click y soltado
+        if (isMouseDown && isMouseUp)
+        {
+            if (floorToMove.CharactersList.Count > 0)
+            {
+                Debug.Log("El combate inicio");
+                actualFloor.RemoveCharacter(player);
+                floorToMove.AddCharacter(player);
+
+                if (actualFloor.CharactersList.Count == 0 && originTower.Type != Character.type.main)
+                {
+                    originTower.RemoveFloor(actualFloor);
+                }
+
+                int result = floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level - floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
+                if (floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].ChType == Character.type.evil)
+                {
+                    if (result > 0)
+                    {
+                        floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
+                        floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
+                    }
+                    else
+                    {
+                        floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level += player.Level;
+                        floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level = 0;
+                        floorToMove.RemoveCharacter(player);
+                    }
+                }
+                else
+                {
+                    floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
+                    floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
+                }
+            }
+        }
     }
 }
