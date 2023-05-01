@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MoveSystem : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class MoveSystem : MonoBehaviour
     public Transform resetPosition;
     BoxCollider2D coll;
     public Floor actualFloor;
+    public TextMeshProUGUI levelText;
     public int level;
 
     // Start is called before the first frame update
@@ -44,6 +46,7 @@ public class MoveSystem : MonoBehaviour
                 this.gameObject.transform.localPosition = new Vector3(mousePos.x - startPosX, mousePos.y - startPosY, this.gameObject.transform.localPosition.z);
             }
         }
+        //levelText.text = $"{level}";
     }
 
     public void OnMouseDown()
@@ -121,8 +124,8 @@ public class MoveSystem : MonoBehaviour
             Floor floor = collision.GetComponentInParent<Floor>();
             actualFloor = floor;
         }
-        else
-            isOnFloor = false;
+
+            //isOnFloor = false;
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -130,8 +133,7 @@ public class MoveSystem : MonoBehaviour
         {
             isOnFloor = true;
         }
-        else
-            isOnFloor = false;
+            //isOnFloor = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
