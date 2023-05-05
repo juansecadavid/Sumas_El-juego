@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MoveSystem : MonoBehaviour
 {
@@ -27,8 +28,9 @@ public class MoveSystem : MonoBehaviour
     public TextMeshProUGUI levelText;
     public int level;
     public int score;
-   
-    
+    public TextMeshProUGUI label;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +56,7 @@ public class MoveSystem : MonoBehaviour
             }
         }
         //levelText.text = $"{level}";
+        label.text = score.ToString();
     }
 
     public void OnMouseDown()
