@@ -174,51 +174,5 @@ public class NewGameManager : MonoBehaviour
             }
 
         }
-        /*
-        bool isMouseDown = false;
-        bool isMouseUp = false;
-        MoveSystem moveSystem = new MoveSystem();
-        moveSystem.OnMouseDown();
-        isMouseDown = true;
-        moveSystem.OnMouseUp();
-        isMouseUp = true;
-        Debug.Log("lee MoveSystem");
-
-        // Comprobar si se ha hecho click y soltado
-        if (isMouseDown && isMouseUp)
-        {
-            if (floorToMove.CharactersList.Count > 0)
-            {
-                Debug.Log("El combate inicio");
-                actualFloor.RemoveCharacter(player);
-                floorToMove.AddCharacter(player);
-
-                if (actualFloor.CharactersList.Count == 0 && originTower.Type != Character.type.main)
-                {
-                    originTower.RemoveFloor(actualFloor);
-                }
-
-                int result = floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level - floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
-                if (floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].ChType == Character.type.evil)
-                {
-                    if (result > 0)
-                    {
-                        floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
-                        floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
-                    }
-                    else
-                    {
-                        floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level += player.Level;
-                        floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level = 0;
-                        floorToMove.RemoveCharacter(player);
-                    }
-                }
-                else
-                {
-                    floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
-                    floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
-                }
-            }
-        }*/
     }
 }

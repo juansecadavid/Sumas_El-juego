@@ -5,6 +5,7 @@ using UnityEngine;
 public class CatchFllors : MonoBehaviour
 {
     Floor floor;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class CatchFllors : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             floor.charactersList.Add(collision.GetComponent<Character>());
+         
         }
     }
 }

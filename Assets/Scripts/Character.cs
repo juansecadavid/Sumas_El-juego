@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Character : MonoBehaviour
 {
+    
     public enum type
     {
         main,
@@ -21,4 +23,6 @@ public class Character : MonoBehaviour
 
     public int Level { get => level; set => level = value; }
     public type ChType { get => chType; set => chType = value; }
+
+    
 }

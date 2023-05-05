@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class MoveSystem : MonoBehaviour
 {
     //public GameObject floorFight;
     //public GameObject[] floorFights;
+    public AudioSource clip1;
+    public AudioSource clip2;
+
     public List<GameObject> floorFights = new List<GameObject>();
     public bool isOnFloor;
     private bool moving;
@@ -22,6 +26,9 @@ public class MoveSystem : MonoBehaviour
     public Floor actualFloor;
     public TextMeshProUGUI levelText;
     public int level;
+    public int score;
+   
+    
 
     // Start is called before the first frame update
     void Start()
@@ -151,13 +158,30 @@ public class MoveSystem : MonoBehaviour
             int result = level - actualFloor.CharactersList[actualFloor.charactersList.Count - 1].Level;
             if (result > 0)
             {
+                
                 actualFloor.CharactersList[actualFloor.charactersList.Count - 1].gameObject.SetActive(false);
+                clip1.Play();
                 actualFloor.RemoveCharacter(actualFloor.CharactersList[actualFloor.charactersList.Count - 1]);
-                Debug.Log("Ganó");
+                Debug.Log("En combate");
+
+                if (actualFloor.charactersList.Count == 0)
+                {
+                    score += level;
+                    Debug.Log(score);
+                    Debug.Log("Ganó");
+                }
+
             }
             else
             {
-                Debug.Log("Perdió");
+                score -= level;
+                clip2.Play();
+                Debug.Log("Herido");
+
+                if (score==0)
+                {
+                    Debug.Log("Perdio");
+                }
             }
         }
         else
