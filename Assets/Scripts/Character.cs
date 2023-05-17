@@ -11,7 +11,7 @@ public class Character : MonoBehaviour
         help
     }
     private type chType;
-    private int level;
+    public int level;
 
     public Character(int level, type characterType)
     {

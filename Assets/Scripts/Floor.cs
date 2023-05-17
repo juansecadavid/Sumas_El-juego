@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    private List<Character> charactersList;
+    public List<Character> charactersList;
 
     public Floor(List<Character> charactersList)
     {

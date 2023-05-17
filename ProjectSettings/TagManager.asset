@@ -3,15 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - DragParent
+  - Character
+  - Tower
+  - FloorFight
+  - Catch
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -40,4 +46,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tower
+    uniqueID: 1367532687
+    locked: 0
+  - name: FloorFight
+    uniqueID: 2840149901
+    locked: 0
+  - name: Character
+    uniqueID: 843769055
+    locked: 0
+  - name: UI
+    uniqueID: 2858015529
     locked: 0
