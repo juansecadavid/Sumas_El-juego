@@ -1,6 +1,6 @@
 # Sumas_El-juego
 
-Cambios y consideraciones con respecto a la entrega anterior
+### Cambios y consideraciones con respecto a la entrega 1:
 
 -Se añadió un enumerator a la clase character, con el fin de poder tipificar cuando un personaje es el personaje principal, un enemigo, o un cofre.
 
@@ -27,3 +27,19 @@ Cambios y consideraciones con respecto a la entrega anterior
 --EnemyGenerator
 
 --MoveAndFight
+
+
+### Cambios con respecto a la entrega 2:
+
+Se implementa ahora sí en Unity, se hacen fondos, menús, UI, sprites de jugador y enemigos.
+
+El código se ve obligado a cambiar, pues todas las formas de instanciar objetos ahora son diferentes para que sí se creen los objetos en el editor como tal. Se implementa el sistema de combate, los niveles, la generación de las torres y los pisos ahora con interacciones entre objetos en Unity. 
+
+Se implementa gravedad en los objetos para un funcionamiento correcto del sistema de pisos y personajes.
+Se implementa el drag & drop para el personaje principal.
+El combate es totalmente funcional, gana el que tenga mayor poder, si es un enemigo, este se destruye.
+Aún falta implementar el funcionamiento y la generación de objetos de ayuda, además de que aparezcan los labels del poder sobre cada personaje, se está trabajando en esto.
+
+
+
+Link del ejecutable: https://drive.google.com/drive/u/0/folders/10SAryWePZcjureg2LmfnnpgKFdRPqyhj

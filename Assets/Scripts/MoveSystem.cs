@@ -32,6 +32,22 @@ public class MoveSystem : MonoBehaviour
 
 
 
+    private static MoveSystem instance;
+
+    public static MoveSystem Instance { get => instance; private set => instance = value; }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
