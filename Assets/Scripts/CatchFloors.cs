@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatchFllors : MonoBehaviour
+public class CatchFloors : MonoBehaviour
 {
     Floor floor;
     // Start is called before the first frame update

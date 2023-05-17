@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using System;
+//using System;
 using static MoveSystem;
 
 
@@ -26,13 +26,30 @@ public class NewGameManager : MonoBehaviour
     Tower EnemyTower;
     Floor EnemyFloor;
 
+    private static NewGameManager instance;
+
+    public static NewGameManager Instance { get => instance; private set => instance = value; }
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     public void Start()
     {
         
         EnemyTower = towerTry.GetComponent<Tower>();
         //EnemyFloor=floorTry.GetComponent<Floor>();
         TowerCharacterGenerator();
-        TowerGenerator(3, 3);
+        
+        TowerGenerator(4, 3, 2);
+        TowerGenerator(4, 3, 26);
         //Instantiate(playerTry, new Vector3(-17, -13f, 0), Quaternion.identity);
 
     }
@@ -48,43 +65,44 @@ public class NewGameManager : MonoBehaviour
 
         //return tower;
     }
-    public void TowerGenerator(int numberFloor, int numberCharacter)
+    public void TowerGenerator(int numberFloor, int numberCharacter, float xPos)
     {
         int numberFloors = numberFloor;
         int numberCharcters = numberCharacter;
 
         List<Floor> floorList;
-        floorList = FloorGenerator(numberFloors, numberCharcters, Character.type.evil);
+        floorList = FloorGenerator(numberFloors, numberCharcters, Character.type.evil, xPos);
 
         //Tower tower = new Tower(floorList, Character.type.evil);
         EnemyTower.FloorList = floorList;
 
-        Instantiate(towerTry, new Vector3(2, -1.5f, 0), Quaternion.identity);
+        Instantiate(towerTry, new Vector3(xPos, -1.5f, 0), Quaternion.identity);
         //return tower;
     }
-    public List<Floor> FloorGenerator(int numberFloors, int numberCharacters, Character.type type)
+    public List<Floor> FloorGenerator(int numberFloors, int numberCharacters, Character.type type, float xPos)
     {
         List<Floor> floorList = new List<Floor>();
 
+        
 
-
-        for (int i = 0; i < numberFloors; i++)
+        for (int i = 0; i < numberCharacters; i++)
         {
             List<Character> list = new List<Character>();
             countCharacterX = 0f;
 
-            for (int j = 0; j < numberCharacters; j++)
-            {
-                Character character = EnemyGenerator(type, countCharacterX);
-                list.Add(character);
+            int enemyRand = Random.Range(1, numberCharacters+1);
 
+            for (int j = 0; j < enemyRand; j++)
+            {
+                Character character = EnemyGenerator(type, countCharacterX, xPos);
+                list.Add(character);
 
             }
             enemyCounter++;
             //Floor floor = new Floor(list);
             //floorList.Add(floor);
 
-            Instantiate(floorTry, new Vector3(2, count, 0), Quaternion.identity);
+            Instantiate(floorTry, new Vector3(xPos, count, 0), Quaternion.identity);
             count += 10f;
         }
         return floorList;
@@ -125,11 +143,13 @@ public class NewGameManager : MonoBehaviour
         Character character = new Character(7, type);
         return character;
     }
-    public Character EnemyGenerator(Character.type type, float countCharacterX)
+    public Character EnemyGenerator(Character.type type, float countCharacterX, float xPos)
     {
 
         Character character = new Character((4 + enemyCounter * 2), type);
-        Instantiate(enemyTry, new Vector3(countCharacterX, count, 0), Quaternion.identity);
+
+        //Retrieve();
+        Instantiate(enemyTry, new Vector3(countCharacterX+xPos, count, 0), Quaternion.identity);
         this.countCharacterX += 2f;
         //Character character = new Character((4), type);
 
@@ -140,7 +160,7 @@ public class NewGameManager : MonoBehaviour
     {
         if (floorToMove.CharactersList.Count > 0)
         {
-            Console.WriteLine("El combate inicio");
+            //Console.WriteLine("El combate inicio");
             actualFloor.RemoveCharacter(player);
             floorToMove.AddCharacter(player);
 
