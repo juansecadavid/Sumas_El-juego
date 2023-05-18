@@ -21,10 +21,15 @@ public class NewGameManager : MonoBehaviour
 
     [SerializeField]
     GameObject playerTry;
-    float count = -13;
+    float countInicial=-13;
+    float count;
     float countCharacterX = -2;
     Tower EnemyTower;
     Floor EnemyFloor;
+    public Sprite sprite1;
+    public Sprite sprite2;
+    Sprite enemySprite;
+    Floor[] floorlist;
 
     private static NewGameManager instance;
 
@@ -43,7 +48,6 @@ public class NewGameManager : MonoBehaviour
     }
     public void Start()
     {
-        
         EnemyTower = towerTry.GetComponent<Tower>();
         //EnemyFloor=floorTry.GetComponent<Floor>();
         TowerCharacterGenerator();
@@ -51,9 +55,13 @@ public class NewGameManager : MonoBehaviour
         TowerGenerator(4, 3, 2);
         TowerGenerator(4, 3, 26);
         //Instantiate(playerTry, new Vector3(-17, -13f, 0), Quaternion.identity);
+        floorlist = FindObjectsOfType<Floor>();
 
     }
-
+    public void Update()
+    {
+        
+    }
     public void TowerCharacterGenerator()
     {
         List<Floor> floorList = FloorGeneratorForMain(2, Character.type.main);
@@ -69,7 +77,7 @@ public class NewGameManager : MonoBehaviour
     {
         int numberFloors = numberFloor;
         int numberCharcters = numberCharacter;
-
+        count = countInicial;
         List<Floor> floorList;
         floorList = FloorGenerator(numberFloors, numberCharcters, Character.type.evil, xPos);
 
@@ -94,8 +102,10 @@ public class NewGameManager : MonoBehaviour
 
             for (int j = 0; j < enemyRand; j++)
             {
-                Character character = EnemyGenerator(type, countCharacterX, xPos);
+                Character character = EnemyGenerator(type, countCharacterX, xPos-4);
                 list.Add(character);
+                //character.GetComponent<BoxCollider2D>().enabled = false;
+                //character.GetComponent<Rigidbody2D>().gravityScale = 0;
 
             }
             enemyCounter++;
@@ -149,8 +159,20 @@ public class NewGameManager : MonoBehaviour
         Character character = new Character((4 + enemyCounter * 2), type);
 
         //Retrieve();
+        int rand = Random.Range(10, 16);
+        enemyTry.GetComponent<Character>().level = rand;
+        int randSprite=Random.Range(0, 2);
+        if(randSprite==0)
+        {
+            enemySprite = sprite1;
+        }
+        else
+        {
+            enemySprite=sprite2;
+        }
+        enemyTry.GetComponent<SpriteRenderer>().sprite = enemySprite;
         Instantiate(enemyTry, new Vector3(countCharacterX+xPos, count, 0), Quaternion.identity);
-        this.countCharacterX += 2f;
+        this.countCharacterX += 4f;
         //Character character = new Character((4), type);
 
         return character;
@@ -195,4 +217,15 @@ public class NewGameManager : MonoBehaviour
 
         }
     }
+    /*public bool IsEmptyAll()
+    {
+        foreach (var item in floorlist)
+        {        
+            if(item.charactersList.Count == 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }*/
 }

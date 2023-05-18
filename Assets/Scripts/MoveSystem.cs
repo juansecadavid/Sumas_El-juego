@@ -15,11 +15,11 @@ public class MoveSystem : MonoBehaviour
 
     public List<GameObject> floorFights = new List<GameObject>();
     public bool isOnFloor;
-    private bool moving;
+    public bool moving;
 
     private float startPosX;
     private float startPosY;
-    private bool finish;
+    public bool finish;
     public GameObject maldito;
 
     public Transform resetPosition;
@@ -29,6 +29,7 @@ public class MoveSystem : MonoBehaviour
     public int level;
     public int score;
     public TextMeshProUGUI label;
+    Rigidbody2D rigidbody2D;
 
 
 
@@ -51,14 +52,17 @@ public class MoveSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rigidbody2D=GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         resetPosition = this.transform;
         AddFloors(); // Llama a la función AddFloors()
         isOnFloor = false;
+        score = level;
+        finish = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (finish == false)
         {
@@ -71,6 +75,7 @@ public class MoveSystem : MonoBehaviour
                 this.gameObject.transform.localPosition = new Vector3(mousePos.x - startPosX, mousePos.y - startPosY, this.gameObject.transform.localPosition.z);
             }
         }
+        
         //levelText.text = $"{level}";
         label.text = score.ToString();
     }
@@ -80,6 +85,7 @@ public class MoveSystem : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            //rigidbody2D.gravityScale = 0;
             Vector3 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -89,15 +95,15 @@ public class MoveSystem : MonoBehaviour
 
             moving = true;
             coll.isTrigger = true;
+            Debug.Log("Presionando");
         }
     }
     public void OnMouseUp()
     {
-        
-         moving = false;
-         bool foundFloorFight = false;
+        moving = false;
         coll.isTrigger = false;
 
+        Debug.Log("Se Soltó");
          /*foreach (GameObject floorFight in floorFights)
          {
              if (Math.Abs(this.transform.localPosition.x - floorFight.transform.localPosition.x) <= 0.5f && Math.Abs(this.transform.localPosition.y - floorFight.transform.localPosition.y) <= 0.5f)
@@ -158,8 +164,8 @@ public class MoveSystem : MonoBehaviour
         if (collision.CompareTag("Catch"))
         {
             isOnFloor = true;
+            //floor.AddCharacter(gameObject);
         }
-            //isOnFloor = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -177,10 +183,11 @@ public class MoveSystem : MonoBehaviour
             int result = level - actualFloor.CharactersList[actualFloor.charactersList.Count - 1].Level;
             if (result > 0)
             {
-                
-                actualFloor.CharactersList[actualFloor.charactersList.Count - 1].gameObject.SetActive(false);
+                Character character = actualFloor.charactersList[actualFloor.charactersList.Count - 1];
+                //actualFloor.CharactersList[actualFloor.charactersList.Count - 1].gameObject.SetActive(false);
                 clip1.Play();
                 actualFloor.RemoveCharacter(actualFloor.CharactersList[actualFloor.charactersList.Count - 1]);
+                Destroy(character.gameObject);
                 Debug.Log("En combate");
 
                 if (actualFloor.charactersList.Count == 0)

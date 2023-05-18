@@ -26,5 +26,6 @@ public class Floor : MonoBehaviour
     public void AddCharacter(Character character)
     {
         charactersList.Add(character);
+        character.GetComponent<BoxCollider2D>().enabled = false;
     }
 }
