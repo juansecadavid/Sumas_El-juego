@@ -5,11 +5,15 @@ using UnityEngine;
 //using System;
 using static MoveSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class NewGameManager : MonoBehaviour
 {
     public static int enemyCounter = 0;
+
+    public GameObject WonScreen;
+    public Button WonButton;
 
     [SerializeField]
     GameObject towerTry;
@@ -52,6 +56,7 @@ public class NewGameManager : MonoBehaviour
     {
         EnemyTower = towerTry.GetComponent<Tower>();
         //EnemyFloor=floorTry.GetComponent<Floor>();
+        currentLevel = 1;
         CreateLevel(currentLevel);
         //Instantiate(playerTry, new Vector3(-17, -13f, 0), Quaternion.identity);
 
@@ -271,9 +276,16 @@ public class NewGameManager : MonoBehaviour
             default:
                 // Se ha completado el último nivel, mostrar mensaje de finalización o hacer algo más
                 Debug.Log("¡Has completado todos los niveles!");
-                SceneManager.LoadScene("StartMenu");
+                WonScreen.SetActive(true);
+                WonButton.gameObject.SetActive(true);
+                WonButton.onClick.AddListener(BackToTheStart);
+
                 break;
         }
+    }
+    public void BackToTheStart()
+    {
+        SceneManager.LoadScene("StartMenu");
     }
     public void Delete()
     {

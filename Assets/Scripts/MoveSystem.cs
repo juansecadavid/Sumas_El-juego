@@ -194,34 +194,38 @@ public class MoveSystem : MonoBehaviour
                 actualFloor.RemoveCharacter(actualFloor.CharactersList[actualFloor.charactersList.Count - 1]);
                 Destroy(character.gameObject);
                 Debug.Log("En combate");
-
                 if (actualFloor.charactersList.Count == 0)
                 {
+                    Debug.Log("Gancantidad de characters: " + actualFloor.charactersList.Count);
                     score += level;
                     Debug.Log(score);
                     bool youWon = manager.IsEmptyAll();
-                    if(youWon)
+                    if (youWon)
                     {
                         //Pon aqui lo que pasa al ganar;
                         nextLevelScreen.SetActive(true);
                         nextLevelButton.gameObject.SetActive(true);
+                        //nextLevelButton.onClick.AddListener(BackToTheStart);
+                        Debug.Log("Ganó");
 
                     }
-                    Debug.Log("Ganó");
-                }
 
+                }
             }
+
+            
             else
             {
                 score -= level;
                 clip2.Play();
                 Debug.Log("Herido");
 
-                if (score==0)
+                if (score>=0)
                 {
                     //pon aquí lo que pasa al perder;
                     lossScreen.SetActive(true);
                     restartButton.gameObject.SetActive(true);
+                    restartButton.onClick.AddListener(StartAgain);
                     Debug.Log("Perdio");
                 }
             }
@@ -233,5 +237,9 @@ public class MoveSystem : MonoBehaviour
     public void StartAgain()
     {
         manager.Delete();
+        lossScreen.SetActive(false);
+        restartButton.gameObject.SetActive(false);
+        score = 30; //el score no se esta actualizando
+        Debug.Log("Reinicio");
     }
 }

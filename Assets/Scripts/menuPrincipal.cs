@@ -7,8 +7,8 @@ public class menuPrincipal : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Level1");
-        //SceneManager.LoadScene("ValeScene");
+        //SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("ValeScene");
     }
 
     public void Exit()
