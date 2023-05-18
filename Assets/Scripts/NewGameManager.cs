@@ -25,11 +25,12 @@ public class NewGameManager : MonoBehaviour
     float count;
     float countCharacterX = -2;
     Tower EnemyTower;
-    Floor EnemyFloor;
     public Sprite sprite1;
     public Sprite sprite2;
     Sprite enemySprite;
     Floor[] floorlist;
+    Tower[] towerList;
+    int currentLevel;
 
     private static NewGameManager instance;
 
@@ -50,12 +51,8 @@ public class NewGameManager : MonoBehaviour
     {
         EnemyTower = towerTry.GetComponent<Tower>();
         //EnemyFloor=floorTry.GetComponent<Floor>();
-        TowerCharacterGenerator();
-        
-        TowerGenerator(4, 3, 2);
-        TowerGenerator(4, 3, 26);
+        CreateLevel(currentLevel);
         //Instantiate(playerTry, new Vector3(-17, -13f, 0), Quaternion.identity);
-        floorlist = FindObjectsOfType<Floor>();
 
     }
     public void Update()
@@ -217,7 +214,7 @@ public class NewGameManager : MonoBehaviour
 
         }
     }
-    /*public bool IsEmptyAll()
+    public bool IsEmptyAll()
     {
         foreach (var item in floorlist)
         {        
@@ -226,6 +223,67 @@ public class NewGameManager : MonoBehaviour
                 return false;
             }
         }
+        currentLevel++;
         return true;
-    }*/
+    }
+    private void CreateLevel(int level)
+    {
+        float posicion = 26;
+        MoveSystem character = FindFirstObjectByType<MoveSystem>();
+        // Lógica para crear el nivel
+        switch (level)
+        {
+            case 1:
+                
+                TowerCharacterGenerator();
+                character.transform.position = character.maldito.transform.position;
+                character.level = 30;
+                TowerGenerator(3, 2, 2);
+                TowerGenerator(3, 2, posicion);
+                TowerGenerator(3, 2, posicion*2);
+                floorlist = FindObjectsOfType<Floor>();
+                towerList=FindObjectsOfType<Tower>();
+                break;
+            case 2:
+                TowerCharacterGenerator();
+                character.transform.position = character.maldito.transform.position;
+                TowerGenerator(4, 3, 2);
+                character.level = 50;
+                TowerGenerator(4, 3, posicion);
+                TowerGenerator(4, 3, posicion * 2);
+                TowerGenerator(4, 3, posicion * 3);
+                floorlist = FindObjectsOfType<Floor>();
+                towerList = FindObjectsOfType<Tower>();
+                break;
+            case 3:
+                TowerCharacterGenerator();
+                character.transform.position = character.maldito.transform.position;
+                character.level = 70;
+                TowerGenerator(5, 3, 2);
+                TowerGenerator(5, 3, posicion);
+                TowerGenerator(5, 3, posicion * 2);
+                TowerGenerator(5, 3, posicion * 3);
+                TowerGenerator(5, 3, posicion * 4);
+                floorlist = FindObjectsOfType<Floor>();
+                towerList = FindObjectsOfType<Tower>();
+                break;
+            default:
+                // Se ha completado el último nivel, mostrar mensaje de finalización o hacer algo más
+                Debug.Log("¡Has completado todos los niveles!");
+                break;
+        }
+    }
+    public void Delete()
+    {
+        foreach (var item in floorlist)
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (var item in towerList)
+        {
+            Destroy(item.gameObject);
+        }
+
+        CreateLevel(currentLevel);
+    }
 }

@@ -31,7 +31,7 @@ public class MoveSystem : MonoBehaviour
     public TextMeshProUGUI label;
     Rigidbody2D rigidbody2D;
 
-
+    NewGameManager manager;
 
     private static MoveSystem instance;
 
@@ -59,6 +59,7 @@ public class MoveSystem : MonoBehaviour
         isOnFloor = false;
         score = level;
         finish = false;
+        manager = FindObjectOfType<NewGameManager>();
     }
 
     // Update is called once per frame
@@ -194,6 +195,11 @@ public class MoveSystem : MonoBehaviour
                 {
                     score += level;
                     Debug.Log(score);
+                    bool seGano = manager.IsEmptyAll();
+                    if(seGano)
+                    {
+                        //Pon aqui lo que pasa al ganar;
+                    }
                     Debug.Log("Ganó");
                 }
 
@@ -206,11 +212,17 @@ public class MoveSystem : MonoBehaviour
 
                 if (score==0)
                 {
+                    //pon aquí lo que pasa al perder;
                     Debug.Log("Perdio");
                 }
             }
         }
         else
             Debug.Log("Vacío");
+    }
+
+    public void StartAgain()
+    {
+        manager.Delete();
     }
 }
