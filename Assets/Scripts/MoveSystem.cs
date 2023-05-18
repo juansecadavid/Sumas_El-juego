@@ -30,6 +30,10 @@ public class MoveSystem : MonoBehaviour
     public int score;
     public TextMeshProUGUI label;
     Rigidbody2D rigidbody2D;
+    public GameObject lossScreen;
+    public GameObject nextLevelScreen;
+    public Button restartButton;
+    public Button nextLevelButton;
 
     NewGameManager manager;
 
@@ -195,10 +199,13 @@ public class MoveSystem : MonoBehaviour
                 {
                     score += level;
                     Debug.Log(score);
-                    bool seGano = manager.IsEmptyAll();
-                    if(seGano)
+                    bool youWon = manager.IsEmptyAll();
+                    if(youWon)
                     {
                         //Pon aqui lo que pasa al ganar;
+                        nextLevelScreen.SetActive(true);
+                        nextLevelButton.gameObject.SetActive(true);
+
                     }
                     Debug.Log("Ganó");
                 }
@@ -213,6 +220,8 @@ public class MoveSystem : MonoBehaviour
                 if (score==0)
                 {
                     //pon aquí lo que pasa al perder;
+                    lossScreen.SetActive(true);
+                    restartButton.gameObject.SetActive(true);
                     Debug.Log("Perdio");
                 }
             }

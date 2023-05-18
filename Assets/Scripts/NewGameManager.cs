@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 //using System;
 using static MoveSystem;
+using UnityEngine.SceneManagement;
 
 
 public class NewGameManager : MonoBehaviour
@@ -270,6 +271,7 @@ public class NewGameManager : MonoBehaviour
             default:
                 // Se ha completado el último nivel, mostrar mensaje de finalización o hacer algo más
                 Debug.Log("¡Has completado todos los niveles!");
+                SceneManager.LoadScene("StartMenu");
                 break;
         }
     }
