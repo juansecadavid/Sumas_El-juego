@@ -6,6 +6,7 @@ using UnityEngine;
 using static MoveSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class NewGameManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class NewGameManager : MonoBehaviour
 
     public GameObject WonScreen;
     public Button WonButton;
+
 
     [SerializeField]
     GameObject towerTry;
@@ -62,6 +64,7 @@ public class NewGameManager : MonoBehaviour
         currentLevel = 1;
         CreateLevel(currentLevel);
         //Instantiate(playerTry, new Vector3(-17, -13f, 0), Quaternion.identity);
+        
 
     }
     public void Update()
@@ -167,15 +170,20 @@ public class NewGameManager : MonoBehaviour
         //Retrieve();
         if (currentLevel==1)
         {
-            rand = Random.Range(25, 40);
+            rand = Random.Range(15, 55);
+            
         }
         if(currentLevel==2)
         {
-            rand = Random.Range(45, 60);
+            rand = Random.Range(30, 80);
+            
         }
-        else
-            rand = Random.Range(65, 90);
-
+        if(currentLevel == 3)
+        {
+            rand = Random.Range(60, 95);
+          
+        }
+            
         enemyTry.GetComponent<Character>().level = rand;
         int randSprite=Random.Range(0, 2);
         if(randSprite==0)
@@ -237,7 +245,7 @@ public class NewGameManager : MonoBehaviour
     {
         foreach (var item in floorlist)
         {
-            if (item.charactersList.Count > 0) //estaba ==
+            if (item.charactersList.Count > 0) //Estaba ==
             {
                 return false;
             }
@@ -257,6 +265,11 @@ public class NewGameManager : MonoBehaviour
     {
         nextLevelScreen.SetActive(false);
         nextLevelButton.gameObject.SetActive(false);
+    }
+    public void offScreenWon()
+    {
+        WonScreen.SetActive(false);
+        WonButton.gameObject.SetActive(false);
     }
 
     public void CreateLevel(int level)
@@ -302,13 +315,17 @@ public class NewGameManager : MonoBehaviour
                 floorlist = FindObjectsOfType<Floor>();
                 towerList = FindObjectsOfType<Tower>();
                 break;
+
+            case 4:
+                //WonScreen.SetActive(true);
+               // WonButton.gameObject.SetActive(true);
+               // WonButton.onClick.AddListener(BackToTheStart);
+                break;
+
             default:
                 
                 // Se ha completado el último nivel, mostrar mensaje de finalización o hacer algo más
                 Debug.Log("¡Has completado todos los niveles!");
-                WonScreen.SetActive(true);
-                WonButton.gameObject.SetActive(true);
-                WonButton.onClick.AddListener(BackToTheStart);
                 //WonScreen.SetActive(false);
                 //WonButton.gameObject.SetActive(false);
 
@@ -373,7 +390,7 @@ public class NewGameManager : MonoBehaviour
             towerList = null;
             CreateLevel(currentLevel);
         }
-        else
+        else if (currentLevel >=4)
         {
             Debug.Log("¡Has completado todos los niveles!");
             WonScreen.SetActive(true);

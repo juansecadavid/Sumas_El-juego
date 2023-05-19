@@ -204,6 +204,7 @@ public class MoveSystem : MonoBehaviour
                 {
                     Debug.Log("Cantidad de characters: " + actualFloor.charactersList.Count);
                     score += level;
+                    level = score;
                     Debug.Log(score);
                     Debug.Log("Ganó combate");
 
@@ -221,11 +222,13 @@ public class MoveSystem : MonoBehaviour
                         nextLevelScreen.SetActive(false);
                         nextLevelButton.gameObject.SetActive(false);
                     }
+                    
                 }
             }           
             else
             {
                 score -= level;
+                level = score;
                 clip2.Play();
                 Debug.Log("Herido");
 
@@ -250,7 +253,7 @@ public class MoveSystem : MonoBehaviour
         manager.Delete();
         lossScreen.SetActive(false);
         restartButton.gameObject.SetActive(false);
-        score = 30; 
+        score = level;
         Debug.Log("Reinicio");
     }
     private IEnumerator ActivateNextLevelScreen()
