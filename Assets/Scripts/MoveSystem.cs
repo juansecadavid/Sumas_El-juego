@@ -222,9 +222,7 @@ public class MoveSystem : MonoBehaviour
                         nextLevelButton.gameObject.SetActive(false);
                     }
                 }
-            }
-
-            
+            }           
             else
             {
                 score -= level;

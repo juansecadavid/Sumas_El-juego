@@ -163,9 +163,19 @@ public class NewGameManager : MonoBehaviour
     {
 
         Character character = new Character((4 + enemyCounter * 2), type);
-
+        int rand=0;
         //Retrieve();
-        int rand = Random.Range(10, 16);
+        if (currentLevel==1)
+        {
+            rand = Random.Range(25, 40);
+        }
+        if(currentLevel==2)
+        {
+            rand = Random.Range(45, 60);
+        }
+        else
+            rand = Random.Range(65, 90);
+
         enemyTry.GetComponent<Character>().level = rand;
         int randSprite=Random.Range(0, 2);
         if(randSprite==0)
@@ -226,8 +236,8 @@ public class NewGameManager : MonoBehaviour
     public bool IsEmptyAll()
     {
         foreach (var item in floorlist)
-        {        
-            if(item.charactersList.Count > 0) //estaba ==
+        {
+            if (item.charactersList.Count > 0) //estaba ==
             {
                 return false;
             }
@@ -284,11 +294,11 @@ public class NewGameManager : MonoBehaviour
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 70;
-                TowerGenerator(4, 3, 2);
-                TowerGenerator(4, 3, posicion);
-                TowerGenerator(4, 3, posicion * 2);
-                TowerGenerator(4, 3, posicion * 3);
-                TowerGenerator(4, 3, posicion * 4);
+                TowerGenerator(3, 3, 2);
+                TowerGenerator(3, 3, posicion);
+                TowerGenerator(3, 3, posicion * 2);
+                TowerGenerator(3, 3, posicion * 3);
+                TowerGenerator(3, 3, posicion * 4);
                 floorlist = FindObjectsOfType<Floor>();
                 towerList = FindObjectsOfType<Tower>();
                 break;
