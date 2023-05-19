@@ -253,7 +253,6 @@ public class MoveSystem : MonoBehaviour
         manager.Delete();
         lossScreen.SetActive(false);
         restartButton.gameObject.SetActive(false);
-        score = level;
         Debug.Log("Reinicio");
     }
     private IEnumerator ActivateNextLevelScreen()

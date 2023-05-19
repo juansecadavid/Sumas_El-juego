@@ -64,7 +64,9 @@ public class NewGameManager : MonoBehaviour
         currentLevel = 1;
         CreateLevel(currentLevel);
         //Instantiate(playerTry, new Vector3(-17, -13f, 0), Quaternion.identity);
-        
+
+       
+
 
     }
     public void Update()
@@ -170,18 +172,15 @@ public class NewGameManager : MonoBehaviour
         //Retrieve();
         if (currentLevel==1)
         {
-            rand = Random.Range(15, 55);
-            
+            rand = Random.Range(25, 30);
         }
         if(currentLevel==2)
         {
             rand = Random.Range(30, 80);
-            
         }
         if(currentLevel == 3)
         {
             rand = Random.Range(60, 95);
-          
         }
             
         enemyTry.GetComponent<Character>().level = rand;
@@ -277,10 +276,11 @@ public class NewGameManager : MonoBehaviour
         float posicion = 26;
         MoveSystem character = FindFirstObjectByType<MoveSystem>();
         // Lógica para crear el nivel
+        Debug.Log(level);
         switch (level)
         {
             case 1:
-
+               
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 20;
@@ -316,16 +316,13 @@ public class NewGameManager : MonoBehaviour
                 towerList = FindObjectsOfType<Tower>();
                 break;
 
-            case 4:
-                //WonScreen.SetActive(true);
-               // WonButton.gameObject.SetActive(true);
-               // WonButton.onClick.AddListener(BackToTheStart);
-                break;
-
             default:
                 
                 // Se ha completado el último nivel, mostrar mensaje de finalización o hacer algo más
                 Debug.Log("¡Has completado todos los niveles!");
+                //WonScreen.SetActive(true);
+                // WonButton.gameObject.SetActive(true);
+                // WonButton.onClick.AddListener(BackToTheStart);
                 //WonScreen.SetActive(false);
                 //WonButton.gameObject.SetActive(false);
 
@@ -342,7 +339,12 @@ public class NewGameManager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }*/
-        if(currentLevel==2)
+        MoveSystem character = FindFirstObjectByType<MoveSystem>();
+        if (currentLevel == 1)
+        {
+            CreateLevel(currentLevel);
+        }
+        if (currentLevel==2)
         {
             for (int i = 0; i < floorlist.Length; i++)
             {
@@ -365,6 +367,8 @@ public class NewGameManager : MonoBehaviour
             }
             towerList = null;
             CreateLevel(currentLevel);
+           
+
         }
         else if(currentLevel==3)
         {
@@ -389,6 +393,7 @@ public class NewGameManager : MonoBehaviour
             }
             towerList = null;
             CreateLevel(currentLevel);
+           
         }
         else if (currentLevel >=4)
         {
