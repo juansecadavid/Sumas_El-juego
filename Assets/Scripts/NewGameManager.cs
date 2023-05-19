@@ -65,7 +65,9 @@ public class NewGameManager : MonoBehaviour
         currentLevel = 1;
         CreateLevel(currentLevel);
         //Instantiate(playerTry, new Vector3(-17, -13f, 0), Quaternion.identity);
-        
+
+       
+
 
     }
     public void Update()
@@ -150,7 +152,7 @@ public class NewGameManager : MonoBehaviour
 
             Instantiate(floorTry, new Vector3(-20, count, 0), Quaternion.identity);
 
-            //aquí se debería crear un piso
+            //aquÃ­ se deberÃ­a crear un piso
 
             //floorList.Add(floor);
 
@@ -184,7 +186,7 @@ public class NewGameManager : MonoBehaviour
         {
             //rand = Random.Range(60, 95);
             rand = Random.Range(60 + (int)(enemysCount * 1.5f), 65 + (int)(enemysCount * 1.7));
-
+     
         }
             
         enemyTry.GetComponent<Character>().level = rand;
@@ -280,11 +282,12 @@ public class NewGameManager : MonoBehaviour
     {
         float posicion = 26;
         MoveSystem character = FindFirstObjectByType<MoveSystem>();
-        // Lógica para crear el nivel
+        // LÃ³gica para crear el nivel
+        Debug.Log(level);
         switch (level)
         {
             case 1:
-
+               
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 20;
@@ -323,16 +326,13 @@ public class NewGameManager : MonoBehaviour
                 towerList = FindObjectsOfType<Tower>();
                 break;
 
-            case 4:
-                //WonScreen.SetActive(true);
-               // WonButton.gameObject.SetActive(true);
-               // WonButton.onClick.AddListener(BackToTheStart);
-                break;
-
             default:
                 
-                // Se ha completado el último nivel, mostrar mensaje de finalización o hacer algo más
-                Debug.Log("¡Has completado todos los niveles!");
+                // Se ha completado el Ãºltimo nivel, mostrar mensaje de finalizaciÃ³n o hacer algo mÃ¡s
+                Debug.Log("Â¡Has completado todos los niveles!");
+                //WonScreen.SetActive(true);
+                // WonButton.gameObject.SetActive(true);
+                // WonButton.onClick.AddListener(BackToTheStart);
                 //WonScreen.SetActive(false);
                 //WonButton.gameObject.SetActive(false);
 
@@ -349,6 +349,7 @@ public class NewGameManager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }*/
+
         if (currentLevel == 1)
         {
             for (int i = 0; i < floorlist.Length - (vecesPerdidas1 * 11); i++)
@@ -372,6 +373,7 @@ public class NewGameManager : MonoBehaviour
             }
             towerList = null;
             vecesPerdidas1++;
+
             CreateLevel(currentLevel);
         }
         if (currentLevel==2)
@@ -398,6 +400,8 @@ public class NewGameManager : MonoBehaviour
             towerList = null;
             //vecesPerdidas1++;
             CreateLevel(currentLevel);
+           
+
         }
         else if(currentLevel==3)
         {
@@ -422,10 +426,11 @@ public class NewGameManager : MonoBehaviour
             }
             towerList = null;
             CreateLevel(currentLevel);
+           
         }
         else if (currentLevel >=4)
         {
-            Debug.Log("¡Has completado todos los niveles!");
+            Debug.Log("Â¡Has completado todos los niveles!");
             WonScreen.SetActive(true);
             WonButton.gameObject.SetActive(true);
             WonButton.onClick.AddListener(BackToTheStart);
