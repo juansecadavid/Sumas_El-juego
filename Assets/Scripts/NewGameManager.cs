@@ -174,7 +174,7 @@ public class NewGameManager : MonoBehaviour
         //Retrieve();
         if (currentLevel==1)
         {
-            rand = Random.Range(60+(int)(enemysCount*1.5f), 92+(int)(enemysCount*1.7));
+            rand = Random.Range(15+(int)(enemysCount*1.5f), 21+(int)(enemysCount*1.7));
            // enemyTry.GetComponent<Character>().level = rand;
             //levelTextEnemys.SetText(rand.ToString());
         }
