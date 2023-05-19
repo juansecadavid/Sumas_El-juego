@@ -209,7 +209,7 @@ public class MoveSystem : MonoBehaviour
 
                     bool youWon = manager.IsEmptyAll();
                     Debug.Log("youWon: " + youWon);
-                    Debug.Log("Manager: " + manager.IsEmptyAll());
+                    //Debug.Log("Manager: " + manager.IsEmptyAll());
 
                     if (youWon == false)
                     {

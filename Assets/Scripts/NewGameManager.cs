@@ -36,8 +36,8 @@ public class NewGameManager : MonoBehaviour
     public Sprite sprite1;
     public Sprite sprite2;
     Sprite enemySprite;
-    Floor[] floorlist;
-    Tower[] towerList;
+    public Floor[] floorlist;
+    public Tower[] towerList;
     int currentLevel;
 
     private static NewGameManager instance;
@@ -99,7 +99,7 @@ public class NewGameManager : MonoBehaviour
 
         
 
-        for (int i = 0; i < numberCharacters; i++)
+        for (int i = 0; i < numberFloors; i++)
         {
             List<Character> list = new List<Character>();
             countCharacterX = 0f;
@@ -261,9 +261,9 @@ public class NewGameManager : MonoBehaviour
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 20;
-                TowerGenerator(3, 2, 2);
-                TowerGenerator(3, 2, posicion);
-                TowerGenerator(3, 2, posicion*2);
+                TowerGenerator(2, 2, 2);
+                TowerGenerator(2, 2, posicion);
+                TowerGenerator(2, 2, posicion*2);
                 floorlist = FindObjectsOfType<Floor>();
                 towerList=FindObjectsOfType<Tower>();
                 break;
@@ -271,11 +271,11 @@ public class NewGameManager : MonoBehaviour
                 
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
-                TowerGenerator(4, 3, 2);
                 character.level = 50;
-                TowerGenerator(4, 3, posicion);
-                TowerGenerator(4, 3, posicion * 2);
-                TowerGenerator(4, 3, posicion * 3);
+                TowerGenerator(3, 3, 2);
+                TowerGenerator(3, 3, posicion);
+                TowerGenerator(3, 3, posicion * 2);
+                TowerGenerator(3, 3, posicion * 3);
                 floorlist = FindObjectsOfType<Floor>();
                 towerList = FindObjectsOfType<Tower>();
                 break;
@@ -284,11 +284,11 @@ public class NewGameManager : MonoBehaviour
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 70;
-                TowerGenerator(5, 3, 2);
-                TowerGenerator(5, 3, posicion);
-                TowerGenerator(5, 3, posicion * 2);
-                TowerGenerator(5, 3, posicion * 3);
-                TowerGenerator(5, 3, posicion * 4);
+                TowerGenerator(4, 3, 2);
+                TowerGenerator(4, 3, posicion);
+                TowerGenerator(4, 3, posicion * 2);
+                TowerGenerator(4, 3, posicion * 3);
+                TowerGenerator(4, 3, posicion * 4);
                 floorlist = FindObjectsOfType<Floor>();
                 towerList = FindObjectsOfType<Tower>();
                 break;
@@ -311,15 +311,65 @@ public class NewGameManager : MonoBehaviour
     }
     public void Delete()
     {
-        foreach (var item in floorlist)
+        /*foreach (var item in floorlist)
         {
             Destroy(item.gameObject);
-        }
-        foreach (var item in towerList)
+        }*/
+        if(currentLevel==2)
         {
-            Destroy(item.gameObject);
-        }
+            for (int i = 0; i < floorlist.Length; i++)
+            {
 
-        CreateLevel(currentLevel);
+                Destroy(floorlist[i]);
+                Destroy(floorlist[i].gameObject);
+                floorlist[i] = null;
+            }
+            floorlist = null;
+
+            /*foreach (var item in towerList)
+            {
+                Destroy(item.gameObject);
+            }*/
+            for (int i = 0; i < towerList.Length; i++)
+            {
+                Destroy(towerList[i].gameObject);
+                Destroy(towerList[i]);
+                towerList[i] = null;
+            }
+            towerList = null;
+            CreateLevel(currentLevel);
+        }
+        else if(currentLevel==3)
+        {
+            for (int i = 0; i < 11; i++)
+            {
+
+                Destroy(floorlist[i]);
+                Destroy(floorlist[i].gameObject);
+                floorlist[i] = null;
+            }
+            floorlist = null;
+
+            /*foreach (var item in towerList)
+            {
+                Destroy(item.gameObject);
+            }*/
+            for (int i = 0; i < 5; i++)
+            {
+                Destroy(towerList[i].gameObject);
+                Destroy(towerList[i]);
+                towerList[i] = null;
+            }
+            towerList = null;
+            CreateLevel(currentLevel);
+        }
+        else
+        {
+            Debug.Log("¡Has completado todos los niveles!");
+            WonScreen.SetActive(true);
+            WonButton.gameObject.SetActive(true);
+            WonButton.onClick.AddListener(BackToTheStart);
+        }
+        
     }
 }
