@@ -41,7 +41,8 @@ public class NewGameManager : MonoBehaviour
     public Floor[] floorlist;
     public Tower[] towerList;
     int currentLevel;
-
+    int vecesPerdidas1=0;
+    int enemysCount=0;
     private static NewGameManager instance;
 
     public static NewGameManager Instance { get => instance; private set => instance = value; }
@@ -170,18 +171,20 @@ public class NewGameManager : MonoBehaviour
         //Retrieve();
         if (currentLevel==1)
         {
-            rand = Random.Range(15, 55);
+            rand = Random.Range(10+(int)(enemysCount*1.5f), 15+(int)(enemysCount*1.7));
             
         }
         if(currentLevel==2)
         {
-            rand = Random.Range(30, 80);
-            
+            //rand = Random.Range(30, 80);
+            rand = Random.Range(30 + (int)(enemysCount * 1.5f), 35 + (int)(enemysCount * 1.7));
+
         }
         if(currentLevel == 3)
         {
-            rand = Random.Range(60, 95);
-          
+            //rand = Random.Range(60, 95);
+            rand = Random.Range(60 + (int)(enemysCount * 1.5f), 65 + (int)(enemysCount * 1.7));
+
         }
             
         enemyTry.GetComponent<Character>().level = rand;
@@ -197,6 +200,7 @@ public class NewGameManager : MonoBehaviour
         enemyTry.GetComponent<SpriteRenderer>().sprite = enemySprite;
         Instantiate(enemyTry, new Vector3(countCharacterX+xPos, count, 0), Quaternion.identity);
         this.countCharacterX += 4f;
+        enemysCount++;
         //Character character = new Character((4), type);
 
         return character;
@@ -284,6 +288,7 @@ public class NewGameManager : MonoBehaviour
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 20;
+                character.score = 20;
                 TowerGenerator(2, 2, 2);
                 TowerGenerator(2, 2, posicion);
                 TowerGenerator(2, 2, posicion*2);
@@ -295,6 +300,7 @@ public class NewGameManager : MonoBehaviour
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 50;
+                character.score = 50;
                 TowerGenerator(3, 3, 2);
                 TowerGenerator(3, 3, posicion);
                 TowerGenerator(3, 3, posicion * 2);
@@ -307,6 +313,7 @@ public class NewGameManager : MonoBehaviour
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 70;
+                character.score = 70;
                 TowerGenerator(3, 3, 2);
                 TowerGenerator(3, 3, posicion);
                 TowerGenerator(3, 3, posicion * 2);
@@ -342,9 +349,9 @@ public class NewGameManager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }*/
-        if(currentLevel==2)
+        if (currentLevel == 1)
         {
-            for (int i = 0; i < floorlist.Length; i++)
+            for (int i = 0; i < floorlist.Length - (vecesPerdidas1 * 11); i++)
             {
 
                 Destroy(floorlist[i]);
@@ -364,6 +371,32 @@ public class NewGameManager : MonoBehaviour
                 towerList[i] = null;
             }
             towerList = null;
+            vecesPerdidas1++;
+            CreateLevel(currentLevel);
+        }
+        if (currentLevel==2)
+        {
+            for (int i = 0; i < floorlist.Length-(vecesPerdidas1*11); i++)
+            {
+
+                Destroy(floorlist[i]);
+                Destroy(floorlist[i].gameObject);
+                floorlist[i] = null;
+            }
+            floorlist = null;
+
+            /*foreach (var item in towerList)
+            {
+                Destroy(item.gameObject);
+            }*/
+            for (int i = 0; i < towerList.Length; i++)
+            {
+                Destroy(towerList[i].gameObject);
+                Destroy(towerList[i]);
+                towerList[i] = null;
+            }
+            towerList = null;
+            //vecesPerdidas1++;
             CreateLevel(currentLevel);
         }
         else if(currentLevel==3)
