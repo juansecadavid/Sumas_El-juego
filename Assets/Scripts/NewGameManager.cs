@@ -18,6 +18,7 @@ public class NewGameManager : MonoBehaviour
 
     public GameObject WonScreen;
     public Button WonButton;
+    //public TextMeshProUGUI levelTextEnemys;
 
 
     [SerializeField]
@@ -173,20 +174,22 @@ public class NewGameManager : MonoBehaviour
         //Retrieve();
         if (currentLevel==1)
         {
-            rand = Random.Range(10+(int)(enemysCount*1.5f), 15+(int)(enemysCount*1.7));
-            
+            rand = Random.Range(60+(int)(enemysCount*1.5f), 92+(int)(enemysCount*1.7));
+           // enemyTry.GetComponent<Character>().level = rand;
+            //levelTextEnemys.SetText(rand.ToString());
         }
         if(currentLevel==2)
         {
             //rand = Random.Range(30, 80);
-            rand = Random.Range(30 + (int)(enemysCount * 1.5f), 35 + (int)(enemysCount * 1.7));
+            rand = Random.Range(30 + (int)(enemysCount * 1.5f), 55 + (int)(enemysCount * 1.7));
+         
 
         }
         if(currentLevel == 3)
         {
             //rand = Random.Range(60, 95);
-            rand = Random.Range(60 + (int)(enemysCount * 1.5f), 65 + (int)(enemysCount * 1.7));
-     
+            rand = Random.Range(60 + (int)(enemysCount * 1.5f), 75 + (int)(enemysCount * 1.7));
+          
         }
             
         enemyTry.GetComponent<Character>().level = rand;
@@ -435,6 +438,7 @@ public class NewGameManager : MonoBehaviour
             WonButton.gameObject.SetActive(true);
             WonButton.onClick.AddListener(BackToTheStart);
         }
+        
         
     }
 }
