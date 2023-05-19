@@ -243,6 +243,11 @@ public class NewGameManager : MonoBehaviour
         nextLevelScreen.SetActive(true);
         nextLevelButton.gameObject.SetActive(true);
     }
+    public void offScreen()
+    {
+        nextLevelScreen.SetActive(false);
+        nextLevelButton.gameObject.SetActive(false);
+    }
 
     public void CreateLevel(int level)
     {
@@ -253,7 +258,6 @@ public class NewGameManager : MonoBehaviour
         {
             case 1:
 
-                
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 20;
@@ -295,6 +299,8 @@ public class NewGameManager : MonoBehaviour
                 WonScreen.SetActive(true);
                 WonButton.gameObject.SetActive(true);
                 WonButton.onClick.AddListener(BackToTheStart);
+                //WonScreen.SetActive(false);
+                //WonButton.gameObject.SetActive(false);
 
                 break;
         }

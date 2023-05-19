@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class Character : MonoBehaviour
 {
-    
+  
     public enum type
     {
         main,
@@ -19,10 +20,11 @@ public class Character : MonoBehaviour
     {
         this.level = level;
         this.chType = characterType;
+       
     }
 
     public int Level { get => level; set => level = value; }
     public type ChType { get => chType; set => chType = value; }
-
+    
     
 }
