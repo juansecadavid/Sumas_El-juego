@@ -12,6 +12,9 @@ public class NewGameManager : MonoBehaviour
 {
     public static int enemyCounter = 0;
 
+    public GameObject nextLevelScreen;
+    public Button nextLevelButton;
+
     public GameObject WonScreen;
     public Button WonButton;
 
@@ -224,15 +227,24 @@ public class NewGameManager : MonoBehaviour
     {
         foreach (var item in floorlist)
         {        
-            if(item.charactersList.Count == 0)
+            if(item.charactersList.Count > 0) //estaba ==
             {
                 return false;
             }
         }
         currentLevel++;
+        StartCoroutine(ActivateNextLevelScreen());
         return true;
     }
-    private void CreateLevel(int level)
+    private IEnumerator ActivateNextLevelScreen()
+    {
+        yield return new WaitForSeconds(1f); // Tiempo de espera de 1 segundos
+
+        nextLevelScreen.SetActive(true);
+        nextLevelButton.gameObject.SetActive(true);
+    }
+
+    public void CreateLevel(int level)
     {
         float posicion = 26;
         MoveSystem character = FindFirstObjectByType<MoveSystem>();
@@ -240,10 +252,11 @@ public class NewGameManager : MonoBehaviour
         switch (level)
         {
             case 1:
+
                 
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
-                character.level = 30;
+                character.level = 20;
                 TowerGenerator(3, 2, 2);
                 TowerGenerator(3, 2, posicion);
                 TowerGenerator(3, 2, posicion*2);
@@ -251,6 +264,7 @@ public class NewGameManager : MonoBehaviour
                 towerList=FindObjectsOfType<Tower>();
                 break;
             case 2:
+                
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 TowerGenerator(4, 3, 2);
@@ -262,6 +276,7 @@ public class NewGameManager : MonoBehaviour
                 towerList = FindObjectsOfType<Tower>();
                 break;
             case 3:
+                
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
                 character.level = 70;
@@ -274,6 +289,7 @@ public class NewGameManager : MonoBehaviour
                 towerList = FindObjectsOfType<Tower>();
                 break;
             default:
+                
                 // Se ha completado el último nivel, mostrar mensaje de finalización o hacer algo más
                 Debug.Log("¡Has completado todos los niveles!");
                 WonScreen.SetActive(true);

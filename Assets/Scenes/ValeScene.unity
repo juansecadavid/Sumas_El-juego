@@ -2711,7 +2711,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6394811982228067344, guid: cb4c1517438315d4bacd0972a0e89647, type: 3}
   m_PrefabInstance: {fileID: 1112156375}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1180524088}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3abef60f5047b80458e0967f9dcc85d1, type: 3}
@@ -2973,7 +2973,11 @@ PrefabInstance:
       objectReference: {fileID: 1760885034}
     - target: {fileID: 6394811982228067344, guid: cb4c1517438315d4bacd0972a0e89647, type: 3}
       propertyPath: level
-      value: 5
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394811982228067344, guid: cb4c1517438315d4bacd0972a0e89647, type: 3}
+      propertyPath: score
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6394811982228067344, guid: cb4c1517438315d4bacd0972a0e89647, type: 3}
       propertyPath: WonScreen
@@ -2999,6 +3003,10 @@ PrefabInstance:
       propertyPath: nextLevelScreen
       value: 
       objectReference: {fileID: 1656532524}
+    - target: {fileID: 6394811982228067344, guid: cb4c1517438315d4bacd0972a0e89647, type: 3}
+      propertyPath: EnemyBattleScreen
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8461376588647041344, guid: cb4c1517438315d4bacd0972a0e89647, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3452,6 +3460,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170813132}
   m_CullTransparentMesh: 1
+--- !u!1 &1180524088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6951324699697128947, guid: cb4c1517438315d4bacd0972a0e89647, type: 3}
+  m_PrefabInstance: {fileID: 1112156375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1205699207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,7 +3684,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1656532524}
+      - m_Target: {fileID: 1180524088}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -4660,7 +4673,7 @@ RectTransform:
   - {fileID: 1344266865}
   - {fileID: 1170813133}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4827,6 +4840,14 @@ PrefabInstance:
       propertyPath: WonScreen
       value: 
       objectReference: {fileID: 1793776196}
+    - target: {fileID: 6900933221088735810, guid: 14f96013aaf4c3c4f892ad0f973b1295, type: 3}
+      propertyPath: nextLevelButton
+      value: 
+      objectReference: {fileID: 1344266866}
+    - target: {fileID: 6900933221088735810, guid: 14f96013aaf4c3c4f892ad0f973b1295, type: 3}
+      propertyPath: nextLevelScreen
+      value: 
+      objectReference: {fileID: 1656532524}
     - target: {fileID: 6900933221088735811, guid: 14f96013aaf4c3c4f892ad0f973b1295, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -4923,9 +4944,8 @@ MonoBehaviour:
   score: 0
   label: {fileID: 0}
   lossScreen: {fileID: 0}
-  nextLevelScreen: {fileID: 0}
   restartButton: {fileID: 0}
-  nextLevelButton: {fileID: 0}
+  EnemyBattleScreen: {fileID: 0}
 --- !u!114 &1793776198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5003,7 +5023,7 @@ RectTransform:
   - {fileID: 733063124}
   - {fileID: 56300354}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

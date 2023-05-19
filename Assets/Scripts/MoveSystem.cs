@@ -31,9 +31,11 @@ public class MoveSystem : MonoBehaviour
     public TextMeshProUGUI label;
     Rigidbody2D rigidbody2D;
     public GameObject lossScreen;
-    public GameObject nextLevelScreen;
     public Button restartButton;
+    public GameObject nextLevelScreen;
     public Button nextLevelButton;
+
+
 
     NewGameManager manager;
 
@@ -186,8 +188,12 @@ public class MoveSystem : MonoBehaviour
         if (actualFloor.charactersList.Count > 0)
         {
             int result = level - actualFloor.CharactersList[actualFloor.charactersList.Count - 1].Level;
+            nextLevelScreen.SetActive(false);
+            nextLevelButton.gameObject.SetActive(false);
+
             if (result > 0)
             {
+
                 Character character = actualFloor.charactersList[actualFloor.charactersList.Count - 1];
                 //actualFloor.CharactersList[actualFloor.charactersList.Count - 1].gameObject.SetActive(false);
                 clip1.Play();
@@ -196,20 +202,25 @@ public class MoveSystem : MonoBehaviour
                 Debug.Log("En combate");
                 if (actualFloor.charactersList.Count == 0)
                 {
-                    Debug.Log("Gancantidad de characters: " + actualFloor.charactersList.Count);
+                    Debug.Log("Cantidad de characters: " + actualFloor.charactersList.Count);
                     score += level;
                     Debug.Log(score);
+                    Debug.Log("Ganó combate");
+
                     bool youWon = manager.IsEmptyAll();
-                    if (youWon)
+                    Debug.Log("youWon: " + youWon);
+                    Debug.Log("Manager: " + manager.IsEmptyAll());
+
+                    if (youWon == false)
                     {
-                        //Pon aqui lo que pasa al ganar;
-                        nextLevelScreen.SetActive(true);
-                        nextLevelButton.gameObject.SetActive(true);
-                        //nextLevelButton.onClick.AddListener(BackToTheStart);
-                        Debug.Log("Ganó");
-
+                        //Pon aquí lo que pasa al ganar;
+                        
                     }
-
+                    else 
+                    {
+                        nextLevelScreen.SetActive(false);
+                        nextLevelButton.gameObject.SetActive(false);
+                    }
                 }
             }
 
@@ -230,8 +241,10 @@ public class MoveSystem : MonoBehaviour
                 }
             }
         }
+
         else
-            Debug.Log("Vacío");
+           Debug.Log("Vacío");
+   
     }
 
     public void StartAgain()
@@ -241,5 +254,12 @@ public class MoveSystem : MonoBehaviour
         restartButton.gameObject.SetActive(false);
         score = 30; //el score no se esta actualizando
         Debug.Log("Reinicio");
+    }
+    private IEnumerator ActivateNextLevelScreen()
+    {
+        yield return new WaitForSeconds(1f); // Tiempo de espera de 1 segundos
+
+        nextLevelScreen.SetActive(true);
+        nextLevelButton.gameObject.SetActive(true);
     }
 }
