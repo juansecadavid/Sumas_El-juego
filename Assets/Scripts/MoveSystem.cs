@@ -187,15 +187,16 @@ public class MoveSystem : MonoBehaviour
     {
         if (actualFloor.charactersList.Count > 0)
         {
-            int result = level - actualFloor.CharactersList[actualFloor.charactersList.Count - 1].Level;
+            int result = score - actualFloor.CharactersList[actualFloor.charactersList.Count - 1].Level;
             nextLevelScreen.SetActive(false);
             nextLevelButton.gameObject.SetActive(false);
 
             if (result > 0)
             {
-
+                int levelEnemy;
                 Character character = actualFloor.charactersList[actualFloor.charactersList.Count - 1];
                 //actualFloor.CharactersList[actualFloor.charactersList.Count - 1].gameObject.SetActive(false);
+                levelEnemy=character.Level;
                 clip1.Play();
                 actualFloor.RemoveCharacter(actualFloor.CharactersList[actualFloor.charactersList.Count - 1]);
                 Destroy(character.gameObject);
@@ -203,8 +204,8 @@ public class MoveSystem : MonoBehaviour
                 if (actualFloor.charactersList.Count == 0)
                 {
                     Debug.Log("Cantidad de characters: " + actualFloor.charactersList.Count);
-                    score += level;
-                    level = score;
+                    score += levelEnemy;
+                    //level = score;
                     Debug.Log(score);
                     Debug.Log("Ganó combate");
 
