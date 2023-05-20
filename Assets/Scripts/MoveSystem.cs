@@ -33,7 +33,7 @@ public class MoveSystem : MonoBehaviour
     public TextMeshProUGUI label;
     Rigidbody2D rigidbody2D;
     public GameObject lossScreen;
-    public Button restartButton;
+    //public Button restartButton;
     public GameObject nextLevelScreen;
     public Button nextLevelButton;
 
@@ -260,8 +260,8 @@ public class MoveSystem : MonoBehaviour
                 {
                     //pon aquí lo que pasa al perder;
                     lossScreen.SetActive(true);
-                    restartButton.gameObject.SetActive(true);
-                    restartButton.onClick.AddListener(StartAgain);
+                    //restartButton.gameObject.SetActive(true);
+                    //restartButton.onClick.AddListener(StartAgain);
                     Debug.Log("Perdio");
                 }
             }
@@ -276,7 +276,7 @@ public class MoveSystem : MonoBehaviour
     {
         manager.Delete();
         lossScreen.SetActive(false);
-        restartButton.gameObject.SetActive(false);
+        //restartButton.gameObject.SetActive(false);
         Debug.Log("Reinicio");
     }
     private IEnumerator ActivateNextLevelScreen()
