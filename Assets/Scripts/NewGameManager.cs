@@ -31,6 +31,9 @@ public class NewGameManager : MonoBehaviour
     GameObject enemyTry;
 
     [SerializeField]
+    EnemyFactory enemyFactory;
+
+    [SerializeField]
     GameObject playerTry;
     float countInicial=-13;
     float count;
@@ -171,7 +174,7 @@ public class NewGameManager : MonoBehaviour
 
         Character character = new Character((4 + enemyCounter * 2), type);
         int rand=0;
-        //Retrieve();
+        
         if (currentLevel==1)
         {
             rand = Random.Range(15+(int)(enemysCount*1.5f), 21+(int)(enemysCount*1.7));
@@ -203,7 +206,13 @@ public class NewGameManager : MonoBehaviour
             enemySprite=sprite2;
         }
         enemyTry.GetComponent<SpriteRenderer>().sprite = enemySprite;
-        Instantiate(enemyTry, new Vector3(countCharacterX+xPos, count, 0), Quaternion.identity);
+        //Instantiate(enemyTry, new Vector3(countCharacterX+xPos, count, 0), Quaternion.identity);
+
+        enemyFactory.DeliverNewProduct(countCharacterX, xPos, count);
+
+        //Aquí va el factory 
+
+
         this.countCharacterX += 4f;
         enemysCount++;
         //Character character = new Character((4), type);
