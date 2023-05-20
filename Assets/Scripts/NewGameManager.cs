@@ -263,8 +263,8 @@ public class NewGameManager : MonoBehaviour
                
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
-                character.level = 20;
-                character.score = 20;
+                character.level = 25;
+                character.score = 25;
                 TowerGenerator(2, 2, 2);
                 TowerGenerator(2, 2, posicion);
                 TowerGenerator(2, 2, posicion*2);
@@ -275,8 +275,8 @@ public class NewGameManager : MonoBehaviour
                 
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
-                character.level = 80;
-                character.score = 80;
+                character.level = 250;
+                character.score = 250;
                 TowerGenerator(3, 3, 2);
                 TowerGenerator(3, 3, posicion);
                 TowerGenerator(3, 3, posicion * 2);
@@ -288,8 +288,8 @@ public class NewGameManager : MonoBehaviour
                 
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
-                character.level = 120;
-                character.score = 120;
+                character.level = 740;
+                character.score = 740;
                 TowerGenerator(3, 3, 2);
                 TowerGenerator(3, 3, posicion);
                 TowerGenerator(3, 3, posicion * 2);

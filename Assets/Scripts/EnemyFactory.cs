@@ -26,21 +26,21 @@ public class EnemyFactory : MonoBehaviour
 
         if (currentLevel == 1)
         {
-            rand = Random.Range(15 + (int)(enemysCount * 1.5f), 21 + (int)(enemysCount * 1.7));
+            rand = Random.Range(14 + (int)(enemysCount * 18f), 23 + (int)(enemysCount * 24));
             // enemyTry.GetComponent<Character>().level = rand;
             //levelTextEnemys.SetText(rand.ToString());
         }
         if (currentLevel == 2)
         {
             //rand = Random.Range(30, 80);
-            rand = Random.Range(30 + (int)(enemysCount * 1.5f), 55 + (int)(enemysCount * 1.7));
+            rand = Random.Range(30 + (int)(enemysCount * 18f), 40 + (int)(enemysCount * 24));
 
 
         }
         if (currentLevel == 3)
         {
             //rand = Random.Range(60, 95);
-            rand = Random.Range(60 + (int)(enemysCount * 1.5f), 75 + (int)(enemysCount * 1.7));
+            rand = Random.Range(60 + (int)(enemysCount * 18f), 70 + (int)(enemysCount * 24));
 
         }
 

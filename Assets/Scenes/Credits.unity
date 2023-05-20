@@ -383,7 +383,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 585062652}
-  - component: {fileID: 585062651}
   - component: {fileID: 585062650}
   m_Layer: 0
   m_Name: SoundManager
@@ -488,21 +487,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &585062651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585062649}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce40dc52e8b835343bb0f473e9ae3eec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundOffImage: {fileID: 21300000, guid: 48fd4b945b7a8e94a8ec2b2ef963244a, type: 3}
-  button: {fileID: 0}
-  audioSource: {fileID: 585062650}
 --- !u!4 &585062652
 Transform:
   m_ObjectHideFlags: 0
