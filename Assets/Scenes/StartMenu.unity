@@ -433,7 +433,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sumas: El juego'
+  m_text: Infestissumam
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09b62593e8c7ba34e83b62bd4db79403, type: 2}
   m_sharedMaterial: {fileID: 2972170686671164404, guid: 09b62593e8c7ba34e83b62bd4db79403, type: 2}
