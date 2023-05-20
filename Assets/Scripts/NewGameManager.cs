@@ -46,7 +46,7 @@ public class NewGameManager : MonoBehaviour
     public Tower[] towerList;
     int currentLevel;
     int vecesPerdidas1=0;
-    int enemysCount=0;
+    //int enemysCount=0;
     private static NewGameManager instance;
 
     public static NewGameManager Instance { get => instance; private set => instance = value; }
@@ -173,46 +173,10 @@ public class NewGameManager : MonoBehaviour
     {
 
         Character character = new Character((4 + enemyCounter * 2), type);
-        int rand=0;
-        
-        if (currentLevel==1)
-        {
-            rand = Random.Range(15+(int)(enemysCount*1.5f), 21+(int)(enemysCount*1.7));
-           // enemyTry.GetComponent<Character>().level = rand;
-            //levelTextEnemys.SetText(rand.ToString());
-        }
-        if(currentLevel==2)
-        {
-            //rand = Random.Range(30, 80);
-            rand = Random.Range(30 + (int)(enemysCount * 1.5f), 55 + (int)(enemysCount * 1.7));
-         
 
-        }
-        if(currentLevel == 3)
-        {
-            //rand = Random.Range(60, 95);
-            rand = Random.Range(60 + (int)(enemysCount * 1.5f), 75 + (int)(enemysCount * 1.7));
-          
-        }
-            
-        //enemyTry.GetComponent<Character>().level = rand;
-        //int randSprite=Random.Range(0, 2);
-        //if(randSprite==0)
-        //{
-        //    enemySprite = sprite1;
-        //}
-        //else
-        //{
-        //    enemySprite=sprite2;
-        //}
-        //enemyTry.GetComponent<SpriteRenderer>().sprite = enemySprite;
-        //Instantiate(enemyTry, new Vector3(countCharacterX+xPos, count, 0), Quaternion.identity);
-
-        enemyFactory.DeliverNewProduct(countCharacterX, xPos, count, rand);
+        enemyFactory.DeliverNewProduct(countCharacterX, xPos, count, currentLevel);
 
         this.countCharacterX += 4f;
-        enemysCount++;
-        //Character character = new Character((4), type);
 
         return character;
     }
@@ -311,8 +275,8 @@ public class NewGameManager : MonoBehaviour
                 
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
-                character.level = 50;
-                character.score = 50;
+                character.level = 80;
+                character.score = 80;
                 TowerGenerator(3, 3, 2);
                 TowerGenerator(3, 3, posicion);
                 TowerGenerator(3, 3, posicion * 2);
@@ -324,8 +288,8 @@ public class NewGameManager : MonoBehaviour
                 
                 TowerCharacterGenerator();
                 character.transform.position = character.maldito.transform.position;
-                character.level = 70;
-                character.score = 70;
+                character.level = 120;
+                character.score = 120;
                 TowerGenerator(3, 3, 2);
                 TowerGenerator(3, 3, posicion);
                 TowerGenerator(3, 3, posicion * 2);
