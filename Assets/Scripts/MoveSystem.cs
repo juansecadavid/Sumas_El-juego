@@ -201,8 +201,8 @@ public class MoveSystem : MonoBehaviour
                 actualFloor.RemoveCharacter(actualFloor.CharactersList[actualFloor.charactersList.Count - 1]);
                 Destroy(character.gameObject);
                 Debug.Log("En combate");
-                if (actualFloor.charactersList.Count == 0)
-                {
+                //if (actualFloor.charactersList.Count == 0)
+                //{
                     Debug.Log("Cantidad de characters: " + actualFloor.charactersList.Count);
                     score += levelEnemy;
                     //level = score;
@@ -224,7 +224,7 @@ public class MoveSystem : MonoBehaviour
                         nextLevelButton.gameObject.SetActive(false);
                     }
                     
-                }
+                //}
             }           
             else
             {
