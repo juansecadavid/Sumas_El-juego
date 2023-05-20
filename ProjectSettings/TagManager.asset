@@ -10,6 +10,7 @@ TagManager:
   - FloorFight
   - Catch
   - Enemy
+  - BGM
   layers:
   - Default
   - TransparentFX

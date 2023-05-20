@@ -64,6 +64,14 @@ public class NewGameManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        //GameObject[] go = GameObject.FindGameObjectsWithTag("BGM");
+
+        if (GameObject.FindGameObjectsWithTag("BGM") != null)
+        {
+            Destroy(GameObject.FindGameObjectsWithTag("BGM")[0]); //if you want to test on the editr, comment this line
+        }
+        
     }
     public void Start()
     {
@@ -223,45 +231,45 @@ public class NewGameManager : MonoBehaviour
         return character;
     }
 
-    public static void MoveAndFight(Character player, Floor actualFloor, Floor floorToMove, Tower originTower)
-    {
-        if (floorToMove.CharactersList.Count > 0)
-        {
-            //Console.WriteLine("El combate inicio");
-            actualFloor.RemoveCharacter(player);
-            floorToMove.AddCharacter(player);
+    //public static void MoveAndFight(Character player, Floor actualFloor, Floor floorToMove, Tower originTower)
+    //{
+    //    if (floorToMove.CharactersList.Count > 0)
+    //    {
+    //        //Console.WriteLine("El combate inicio");
+    //        actualFloor.RemoveCharacter(player);
+    //        floorToMove.AddCharacter(player);
 
-            if (actualFloor.CharactersList.Count == 0 && originTower.Type != Character.type.main)
-            {
-                originTower.RemoveFloor(actualFloor);
-            }
+    //        if (actualFloor.CharactersList.Count == 0 && originTower.Type != Character.type.main)
+    //        {
+    //            originTower.RemoveFloor(actualFloor);
+    //        }
 
 
-            int result = floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level - floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
-            if (floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].ChType == Character.type.evil)
-            {
-                if (result > 0)
-                {
-                    //floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level = 11;
-                    floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
-                    floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
-                }
-                else
-                {
-                    floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level += player.Level;
-                    floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level = 0;
+    //        int result = floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level - floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
+    //        if (floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].ChType == Character.type.evil)
+    //        {
+    //            if (result > 0)
+    //            {
+    //                //floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level = 11;
+    //                floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
+    //                floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
+    //            }
+    //            else
+    //            {
+    //                floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level += player.Level;
+    //                floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level = 0;
 
-                    floorToMove.RemoveCharacter(player);
-                }
-            }
-            else
-            {
-                floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
-                floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
-            }
+    //                floorToMove.RemoveCharacter(player);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            floorToMove.CharactersList[floorToMove.CharactersList.Count - 1].Level += floorToMove.CharactersList[floorToMove.CharactersList.Count - 2].Level;
+    //            floorToMove.RemoveCharacter(floorToMove.CharactersList[floorToMove.CharactersList.Count - 2]);
+    //        }
 
-        }
-    }
+    //    }
+    //}
     public bool IsEmptyAll()
     {
         foreach (var item in floorlist)

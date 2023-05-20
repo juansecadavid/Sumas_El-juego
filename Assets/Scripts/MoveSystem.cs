@@ -10,8 +10,7 @@ public class MoveSystem : MonoBehaviour
 {
     //public GameObject floorFight;
     //public GameObject[] floorFights;
-    public AudioSource clip1;
-    public AudioSource clip2;
+    public AudioSource clip1, clip2, clip3, clip4;
 
     public List<GameObject> floorFights = new List<GameObject>();
     public bool isOnFloor;
@@ -200,7 +199,22 @@ public class MoveSystem : MonoBehaviour
                 Character character = actualFloor.charactersList[actualFloor.charactersList.Count - 1];
                 //actualFloor.CharactersList[actualFloor.charactersList.Count - 1].gameObject.SetActive(false);
                 levelEnemy=character.Level;
-                clip1.Play();
+
+                int randAudio = UnityEngine.Random.Range(1, 3);
+
+                Debug.Log(randAudio);
+
+                if(randAudio == 1)
+                {
+                    Debug.Log("sonido1");
+                    clip3.Play();
+                }
+                else
+                {
+                    Debug.Log("Sonido2");
+                    clip1.Play();
+                }
+                
                 actualFloor.RemoveCharacter(actualFloor.CharactersList[actualFloor.charactersList.Count - 1]);
                 //Destroy(character.gameObject);
 
@@ -221,13 +235,16 @@ public class MoveSystem : MonoBehaviour
 
                     if (youWon == false)
                     {
-                        //Pon aquí lo que pasa al ganar;
                         
+
+                        //Pon aquí lo que pasa al ganar;
+
                     }
                     else 
                     {
                         nextLevelScreen.SetActive(false);
                         nextLevelButton.gameObject.SetActive(false);
+                        clip4.Play();
                     }
                     
                 //}
@@ -268,5 +285,7 @@ public class MoveSystem : MonoBehaviour
 
         nextLevelScreen.SetActive(true);
         nextLevelButton.gameObject.SetActive(true);
+
+        
     }
 }
