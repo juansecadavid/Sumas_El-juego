@@ -17,6 +17,9 @@ public class MoveSystem : MonoBehaviour
     public bool isOnFloor;
     public bool moving;
 
+    [SerializeField]
+    EnemyPool enemyPool;
+
     private float startPosX;
     private float startPosY;
     public bool finish;
@@ -199,7 +202,10 @@ public class MoveSystem : MonoBehaviour
                 levelEnemy=character.Level;
                 clip1.Play();
                 actualFloor.RemoveCharacter(actualFloor.CharactersList[actualFloor.charactersList.Count - 1]);
-                Destroy(character.gameObject);
+                //Destroy(character.gameObject);
+
+                enemyPool.Recycle(character.gameObject);
+
                 Debug.Log("En combate");
                 //if (actualFloor.charactersList.Count == 0)
                 //{

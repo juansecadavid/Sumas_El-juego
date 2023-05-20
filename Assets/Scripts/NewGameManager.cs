@@ -34,19 +34,22 @@ public class NewGameManager : MonoBehaviour
     EnemyFactory enemyFactory;
 
     [SerializeField]
+    EnemyPool enemyPool;
+
+    [SerializeField]
     GameObject playerTry;
     float countInicial=-13;
     float count;
     float countCharacterX = -2;
     Tower EnemyTower;
-    //public Sprite sprite1;
-    //public Sprite sprite2;
-    //Sprite enemySprite;
+    public Sprite sprite1;
+    public Sprite sprite2;
+    Sprite enemySprite;
     public Floor[] floorlist;
     public Tower[] towerList;
     int currentLevel;
     int vecesPerdidas1=0;
-    //int enemysCount=0;
+    int enemysCount=0;
     private static NewGameManager instance;
 
     public static NewGameManager Instance { get => instance; private set => instance = value; }
@@ -174,7 +177,46 @@ public class NewGameManager : MonoBehaviour
 
         Character character = new Character((4 + enemyCounter * 2), type);
 
-        enemyFactory.DeliverNewProduct(countCharacterX, xPos, count, currentLevel);
+        GameObject currentEnemy = enemyPool.Retrieve();
+        currentEnemy.transform.position = new Vector3(countCharacterX + xPos, count, 0);
+
+        int rand = 0;
+
+        if (currentLevel == 1)
+        {
+            rand = Random.Range(14 + (int)(enemysCount * 18f), 23 + (int)(enemysCount * 24));
+            // enemyTry.GetComponent<Character>().level = rand;
+            //levelTextEnemys.SetText(rand.ToString());
+        }
+        if (currentLevel == 2)
+        {
+            //Debug.Log("Currentlevel=2");
+            //rand = Random.Range(30, 80);
+            rand = Random.Range(30 + (int)(enemysCount * 18f), 40 + (int)(enemysCount * 24));
+
+
+        }
+        if (currentLevel == 3)
+        {
+            //rand = Random.Range(60, 95);
+            rand = Random.Range(60 + (int)(enemysCount * 18f), 70 + (int)(enemysCount * 24));
+
+        }
+
+        currentEnemy.GetComponent<Character>().level = rand;
+        int randSprite = Random.Range(0, 2);
+        if (randSprite == 0)
+        {
+            enemySprite = sprite1;
+        }
+        else
+        {
+            enemySprite = sprite2;
+        }
+        currentEnemy.GetComponent<SpriteRenderer>().sprite = enemySprite;
+
+        enemysCount++;
+        //enemyFactory.DeliverNewProduct(countCharacterX, xPos, count, currentLevel);
 
         this.countCharacterX += 4f;
 
