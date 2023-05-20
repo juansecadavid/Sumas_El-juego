@@ -39,9 +39,9 @@ public class NewGameManager : MonoBehaviour
     float count;
     float countCharacterX = -2;
     Tower EnemyTower;
-    public Sprite sprite1;
-    public Sprite sprite2;
-    Sprite enemySprite;
+    //public Sprite sprite1;
+    //public Sprite sprite2;
+    //Sprite enemySprite;
     public Floor[] floorlist;
     public Tower[] towerList;
     int currentLevel;
@@ -195,23 +195,20 @@ public class NewGameManager : MonoBehaviour
           
         }
             
-        enemyTry.GetComponent<Character>().level = rand;
-        int randSprite=Random.Range(0, 2);
-        if(randSprite==0)
-        {
-            enemySprite = sprite1;
-        }
-        else
-        {
-            enemySprite=sprite2;
-        }
-        enemyTry.GetComponent<SpriteRenderer>().sprite = enemySprite;
+        //enemyTry.GetComponent<Character>().level = rand;
+        //int randSprite=Random.Range(0, 2);
+        //if(randSprite==0)
+        //{
+        //    enemySprite = sprite1;
+        //}
+        //else
+        //{
+        //    enemySprite=sprite2;
+        //}
+        //enemyTry.GetComponent<SpriteRenderer>().sprite = enemySprite;
         //Instantiate(enemyTry, new Vector3(countCharacterX+xPos, count, 0), Quaternion.identity);
 
-        enemyFactory.DeliverNewProduct(countCharacterX, xPos, count);
-
-        //Aquí va el factory 
-
+        enemyFactory.DeliverNewProduct(countCharacterX, xPos, count, rand);
 
         this.countCharacterX += 4f;
         enemysCount++;
